@@ -1,0 +1,148 @@
+@media (min-width: 1366px) {
+	body
+	{
+		width: 80%;
+		position: relative;
+		left: 10%;
+		border: 1px solid #ddd;
+		padding-bottom: 25px;
+	}
+}
+
+@media (min-width: 1600px) {
+	body
+	{
+		width: 70%;
+		position: relative;
+		left: 15%;
+		border: 1px solid #ddd;
+		padding-bottom: 25px;
+	}
+}
+
+body
+{
+	padding: 15px;
+}
+
+.format-frame-page
+{
+	border: 1px solid #ddd;
+}
+
+.heading
+{
+	background-color: #337ab7;
+	border: 1px solid;
+	border-color: #ddd #ddd white #ddd;
+	padding: 15px;
+	margin: -15px -15px 15px -15px;
+	font-weight: bold;
+	color: #FFFFFF;
+}
+
+.no-padding
+{
+	padding: 0px !important;
+	margin: 0px !important;
+}
+
+.no-radius
+{
+	border-radius: 0px !important;
+}
+
+.text-80
+{
+	width: 80px;
+}
+
+.text-100
+{
+	width: 100px;
+}
+
+.text-120
+{
+	width: 120px;
+}
+
+.text-80, .text-100, .text-120, .text-default
+{
+	font-weight: bold;
+	color: gray;
+	text-align: left;
+}
+
+.table
+{
+	word-wrap: break-word;
+}
+
+ul.ui-autocomplete {
+  z-index:1500;!important
+}
+
+.dropdown-menu:before {
+	position: absolute;
+	top: -7px;
+	left: 9px;
+	display: inline-block;
+	border-right: 7px solid transparent;
+	border-bottom: 7px solid #ccc;
+	border-left: 7px solid transparent;
+	border-bottom-color: rgba(0, 0, 0, 0.2);
+}
+
+.dropdown-menu:after {
+	position: absolute;
+	top: -6px;
+	left: 10px;
+	display: inline-block;
+	border-right: 6px solid transparent;
+	border-bottom: 6px solid #ffffff;
+	border-left: 6px solid transparent;
+}
+
+.modal-body {
+	max-height: calc(100vh - 200px);
+	overflow-y: auto;
+}
+
+button:focus
+{
+	outline: 0 !important;
+}
+
+.on-top
+{
+	position: fixed;
+	right: 50px;
+	bottom: 50px;
+}
+
+.on-top button *
+{
+	font-size: 25px;
+}
+
+.on-top::after
+{
+	content: 'Về đầu trang';
+	display: inline-block;
+	padding: 10px;
+	color: #408080;
+	font-weight: bold;
+}
+
+#show-loading-gif
+{
+	text-align: center;
+}
+
+
+#show-loading-gif .modal-dialog
+{
+	width: auto;
+	display: inline-block;
+}
