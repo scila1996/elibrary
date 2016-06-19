@@ -51,6 +51,11 @@ $admin_issue = TRUE;
 							<div id="table-issue-detail">
 							</div>
 						</div>
+						<div class="modal-footer">
+							<div class="text-left">
+								<button type="button" class="btn btn-primary print-issue" value=""><span class="glyphicon glyphicon-print"></span> <strong> Print </strong></button>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -58,5 +63,6 @@ $admin_issue = TRUE;
 		<?php include $_SERVER["DOCUMENT_ROOT"] . "/module/template/footer.php" ?>
 	</body>
 	<script src="/module/js/table.js"></script>
+	<script src="/module/js/print.issue.js"></script>
 	<script src="index.js"></script>
 </html>

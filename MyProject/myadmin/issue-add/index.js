@@ -145,15 +145,18 @@ $(document).ready(function(){
 			type: "POST",
 			url: "/module/action.php",
 			async: false,
-			data: {action: "issue-books", books: books, user: user, date: d}
+			data: {action: "issue-books", books: books, user: user, date: d},
+			dataType: "json"
 		}).done(function(result){
 			$('#check-user-for-issue').submit();
 			$('#form-issue-book').modal('hide');
 			$('#issue-success').show();
-			$('#issue-success').find('span').html(create_Comment(' Đã xử lý thành công <br /> Mã mượn sách : ' + result, 'success'));
+			$('#issue-success').find('span').html(create_Comment(' Đã xử lý thành công <br /> Mã mượn sách : ' + result.code + '<br />', 'success'));
+			$('#issue-success').find('span').append('<button type="button" class="btn btn-primary print-issue" value="' + result.id + '"><span class="glyphicon glyphicon-print"></span> <strong> Print </strong></button>');
 		});
 		remove_Selected();
 		$(document).scrollTop(0);
+		$(this).prev().html('');
 		return false;
 	});
 	// Select Expand

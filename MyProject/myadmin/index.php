@@ -31,7 +31,17 @@ $admin_info = TRUE;
 			$d = new DateTime($_SESSION["admin"]->get_LastTime());
 			?>
 			<p><strong> Lần đăng nhập cuối </strong> : "<?php echo $d->format("l / d-m-Y / H:i:s") ?>" </p>
+			<?php
+			$cur = new DateTime();
+			$log = $_SESSION["admin"]->get_TimeLogin();
+			$cur = $cur->format("Y-m-d H:i:s");
+			$log = $log->format("Y-m-d H:i:s");
+			?>
+			<p><strong> Thời gian hoạt động </strong> : "<span time-current="<?php echo $cur ?>" time-active="<?php echo $log ?>"> Loading ... </span>" </p>
+			<hr />
+			<a href="" class="btn btn-primary"><strong> Refresh <span class="glyphicon glyphicon-refresh"></span></strong></a>
 		</h4>
 		<?php include $_SERVER["DOCUMENT_ROOT"] . "/module/template/footer.php" ?>
 	</body>
+	<script src="index.js"></script>
 </html>

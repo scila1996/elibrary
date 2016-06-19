@@ -1,18 +1,19 @@
 function Init()
 {
-	$('[title]').tooltip();
-	$('.alert-hide').hide();
+	$(document).on('mouseenter', '[title]', function(){
+		$(this).tooltip('show');
+	});
+	$(document).find('.alert-hide').hide();
 	$(document).find('.on-top').hide();
 	$(document).find('.on-top').removeClass('hide');
-	$('.alert a').click(function(){
+	$(document).on('click', '.alert a', function(){
 		$(this).parent().hide();
 	});
-	$('button, a').mouseup(function(){
+	$(document).on('click mouseleave', 'button, a', function(){
 		$(this).blur();
 	});
-	$(document).on('scroll', function(){
-		var top = $(this).scrollTop();
-		if (top >= $(window).height())
+	$(window).scroll(function(){
+		if ($(this).scrollTop() >= $(this).height())
 		{
 			$(document).find('.on-top').show();
 		}
@@ -22,7 +23,7 @@ function Init()
 		}
 	});
 	$(document).on('click', '.on-top', function(){
-		$(document).find('body').animate({scrollTop: '0'});
+		$(window).scrollTop(0);
 	});
 }
 
@@ -50,7 +51,7 @@ function create_Comment(text, color)
 
 function show_Loading()
 {
-	$(document).find('#show-loading-gif').modal('show');
+	$(document).find('#show-loading-gif').modal({backdrop: "static"});
 }
 
 function hide_Loading()
@@ -58,6 +59,20 @@ function hide_Loading()
 	$(document).find('#show-loading-gif').modal('hide');
 }
 
+function show_UpdateSuccess(item, time)
+{
+	if (time === undefined)
+	{
+		time = 5000;
+	}
+	var update_icon = $(document).find('.update-success').clone();
+	item.append(update_icon);
+	setTimeout(function(){
+		update_icon.remove();
+	}, time);
+}
+
 $(document).ready(function(){
 	Init();
 });
+

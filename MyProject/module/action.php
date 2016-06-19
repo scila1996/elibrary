@@ -70,7 +70,7 @@ if (isset($_POST["action"]))
 		}
 		case 'remove-category':
 		{
-			$_SESSION["admin"]->delete_Category($_POST["categoryid"]);
+			$_SESSION["admin"]->delete_Category($_POST["id"]);
 			exit("");
 		}
 		case 'add-book':

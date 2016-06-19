@@ -10,6 +10,12 @@ $(document).ready(function(){
 	}
 	create_Table();
 	$(document).find('#search-user input[type="text"]').focus();
+	$(document).on('shown.bs.collapse', '#add-user', function(){
+		$(this).find('input:eq(0)').focus();
+	});
+	$(document).on('hidden.bs.collapse', '#add-user', function(){
+		$(document).find('#search-user input[type="text"]').focus();
+	});
 	// Find User
 	$(document).on('submit', '#search-user', function(){
 		keyword = $(this).find('input').val();

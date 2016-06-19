@@ -20,7 +20,7 @@ abstract class Table
 		$num = 0;
 		$i = $offset;
 		?>
-		<table class="table table-hover">
+		<table class="table table-striped table-hover">
 			<thead>
 				<?php $this->tr_th() ?>
 			</thead>

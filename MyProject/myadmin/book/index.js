@@ -20,9 +20,10 @@ $(document).ready(function(){
 			dataType: "html"
 		}).done(function(result){
 			$('#select-category').empty();
-			$('#select-category').append(result);
+			$('#select-category').html(result);
 			$(document).find('[name="categoryid"]').empty();
 			$(document).find('[name="categoryid"]').html(result);
+			$(document).find('[name="categoryid"]').find('[value=""]').remove();
 		});
 		create_Table();
 	}
@@ -47,6 +48,9 @@ $(document).ready(function(){
 		return false;
 	});
 	// Add book
+	$(document).on('hidden.bs.modal', '#add-book', function(){
+		$('[data-target="#add-book"]').blur();
+	});
 	$(document).on('submit', '#add-book', function(){
 		var book = new Object();
 		$(this).find('[name]').each(function(){
@@ -77,8 +81,10 @@ $(document).ready(function(){
 				if (!result)
 				{
 					f.reset();
-					$('#add-book').collapse('hide');
-					table.reLoad();
+					$(f).modal('hide');
+					var keyw = $('#keyword');
+					keyw.find('input').val(book.code);
+					keyw.submit();
 					alert("Thêm sách mới thành công : " + book.title);
 				}
 				else

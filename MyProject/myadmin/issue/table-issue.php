@@ -31,7 +31,7 @@ if (isset($_POST["table"]))
 			);
 			?>
 			<tr>
-				<td> <?php echo $order ?> </td>
+				<td style="font-weight: bold"> <?php echo $order ?> </td>
 				<td> <?php echo $issue["code"] ?> </td>
 				<td> <?php echo $issue["user"] ?> </td>
 				<td> <?php echo $issue["name"] ?> </td>
@@ -39,7 +39,9 @@ if (isset($_POST["table"]))
 				<td> <?php echo $issue["quantity"] ?> </td>
 				<td <?php if ($issue["state"] == 2) { ?> style="color: red" <?php } ?>> <?php echo $state[$issue["state"]] ?> </td>
 				<td> <?php echo $issue["datesubmit"] ?> </td>
-				<td class="text-right"><button type="button" class="btn btn-link select-issue" value="<?php echo $issue["id"] ?>"><span class="glyphicon glyphicon-ok"></span> Chi tiết</button></td>
+				<td class="text-right">
+					<button class="btn btn-primary select-issue" value="<?php echo $issue["id"]?>"><span class="glyphicon glyphicon-check"></span></button>
+				</td>
 			</tr>
 			<?php
 		}
@@ -65,7 +67,7 @@ if (isset($_POST["table"]))
 		$keyword = $_POST["data"]["keyword"];
 		$state = $_POST["data"]["state"];
 		$table->query .= "
-			AND (B.user REGEXP '$keyword' OR B.code REGEXP '$keyword')
+			AND (B.user REGEXP '$keyword' OR B.name REGEXP '$keyword' OR B.code REGEXP '$keyword')
 			AND (B.state REGEXP '$state')
 		"; 
 	}

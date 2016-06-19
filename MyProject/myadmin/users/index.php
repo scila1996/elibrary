@@ -27,47 +27,44 @@ $_SESSION["admin"]->select_User = "";
 		<?php
 		if (Misc::has_Alert()) Misc::show_Alert();
 		?>
-		<div class="container-fixed">
-			<div class="row">
-				<div class="col-xs-12 text-left">
-					<form class="form-inline form-group" id="search-user">
-						<input type="text" class="form-control" placeholder="Nhập tên hoặc tài khoản"/>
-						<button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
-					</form>
-					<div id="table-users">
-					</div>
-					<div class="form-inline form-group text-left">
-						<button class="btn btn-primary" data-toggle="collapse" data-target="#add-user"> Thêm mới <span class="caret"></span> </button>
-					</div>
-					<form class="container-fixed collapse text-left" id="add-user">
-						<div class="row">
-							<div class="col-xs-8">
-								<div class="panel panel-default">
-									<div class="panel-heading">
-										<strong class="text-info"> Information </strong>
-									</div>
-									<div class="panel-body">
-										<?php
-										Misc::create_Alert("alert-warning alert-hide", "", "new-user-error");
-										Misc::show_Alert();
-										?>
-										<div class="input-group form-group">
-											<div class="input-group-addon"> <div class="text-120"> Tên tài khoản </div> </div>
-											<input type="text" class="form-control" placeholder="Tên tài khoản" name="user"/>
-										</div>
-										<div class="input-group">
-											<div class="input-group-addon"> <div class="text-120"> Tên độc giả </div> </div>
-											<input type="text" class="form-control" placeholder="Họ & tên độc giả" name="name"/>
-										</div>
-									</div>
-									<div class="panel-footer text-center">
-										<button type="submit" class="btn btn-primary" name="action" value="add-new-user"> SAVE <span class="glyphicon glyphicon-check"></span> </button>
-									</div>
+		<div class="text-left">
+			<form class="form-inline form-group" id="search-user">
+				<input type="text" class="form-control" placeholder="Tìm độc giả"/>
+				<button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
+			</form>
+			<div class="form-inline form-group text-left">
+				<button class="btn btn-primary" data-toggle="collapse" data-target="#add-user"><strong> Thêm mới </strong><span class="caret"></span> </button>
+			</div>
+			<form class="container-fixed collapse text-left" id="add-user">
+				<div class="row">
+					<div class="col-xs-8">
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<strong class="text-info"> Information </strong>
+							</div>
+							<div class="panel-body">
+								<?php
+								Misc::create_Alert("alert-warning alert-hide", "", "new-user-error");
+								Misc::show_Alert();
+								?>
+								<div class="input-group form-group">
+									<div class="input-group-addon"> <div class="text-120"> Tên tài khoản </div> </div>
+									<input type="text" class="form-control" placeholder="Tên tài khoản" name="user"/>
+								</div>
+								<div class="input-group">
+									<div class="input-group-addon"> <div class="text-120"> Tên độc giả </div> </div>
+									<input type="text" class="form-control" placeholder="Họ & tên độc giả" name="name"/>
 								</div>
 							</div>
+							<div class="panel-footer text-center">
+								<button type="submit" class="btn btn-primary" name="action" value="add-new-user"> SAVE <span class="glyphicon glyphicon-check"></span> </button>
+							</div>
 						</div>
-					</form>
+					</div>
 				</div>
+				<hr />
+			</form>
+			<div id="table-users">
 			</div>
 		</div>
 		<?php include $_SERVER["DOCUMENT_ROOT"] . "/module/template/footer.php" ?>

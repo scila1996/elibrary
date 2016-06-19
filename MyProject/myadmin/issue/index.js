@@ -35,8 +35,10 @@ $(document).ready(function(){
 	});
 	// Show Issue Detail
 	$(document).on('click', '#table-issue .select-issue', function(){
-		$('#form-submit-books').modal('show');
+		var form = $('#form-submit-books'); 
 		var issueid = $(this).val();
+		form.modal('show');
+		form.find('.print-issue').val(issueid);
 		load_TableIssueDetail(issueid);
 	});
 	// Submit Book
@@ -53,5 +55,19 @@ $(document).ready(function(){
 	});
 	$('#form-submit-books').on('hidden.bs.modal', function(){
 		table.reLoad();
+	});
+	$(document).on('click', '#table-issue-detail .select-all-submit', function(){
+		while (true)
+		{
+			var list = $(document).find('#table-issue-detail .select-submit:not([disabled])');
+			if (list.length)
+			{
+				list.trigger('click');
+			}
+			else
+			{
+				break;
+			}
+		}
 	});
 });

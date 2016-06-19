@@ -13,7 +13,7 @@ if (isset($_POST["table"]))
 				<th> # </th>
 				<th> Sách </th>
 				<th> Trạng thái </th>
-				<th></th>
+				<th> <button type="button" class="btn btn-primary select-all-submit"><strong> Trả hết </strong></button> </th>
 			</tr>
 			<?php
 		}
@@ -21,7 +21,7 @@ if (isset($_POST["table"]))
 		{
 			?>
 			<tr>
-				<td> <?php echo $order ?> </td>
+				<td style="font-weight: bold"> <?php echo $order ?> </td>
 				<td> <?php echo $issue["booktitle"] ?> </td>
 				<td> <?php echo $issue["state"] == 1 ? "Đang mượn - chưa trả" : "Đã trả" ?> </td>
 				<td class="text-right"><button type="button" class="btn btn-primary select-submit" <?php if (!$issue["state"]) echo "disabled" ?> value="<?php echo $issue["id"] ?>"><span class="glyphicon glyphicon-flag"></span></button></td>

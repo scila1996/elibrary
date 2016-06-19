@@ -1,56 +1,40 @@
 $(document).ready(function(){
-	var id = "";
 	var catname = "";
-	function load_Categories()
-	{
-		$.ajax({
-			url: "/module/form/categories.option.php",
-			async: false,
-			dataType: "html"
-		}).done(function(result){
-			var select_cat = $('[name="select-category"]');
-			select_cat.empty();
-			select_cat.append(result);
-			select_cat.find('option').eq(0).remove();
-			if (id)
-			{
-				select_cat.val(id);
-			}
-			select_cat.change();
-		});
-	}
-	function show_Success(text)
-	{
-		$('#success-message').show();
-		$('#success-message').find('span').html('<strong>' + text + '</strong>');
-	}
+	var table = 0;
 	
-	$(document).on('hide.bs.collapse', '#form-edit-category', function(){
-		$(this).next().empty();
+	function load_Table()
+	{
+		table = new Table('/myadmin/category/table-category.php', null, '#table-category');
+	}
+	load_Table();
+	function find_Td(id)
+	{
+		return $('#table-category').find('tr:has([value="' + id + '"]) td:eq(0)');
+	}
+	$(document).on('click', '.edit-category', function(){
+		var f_edit = $('#edit-category');
+		f_edit.modal('show');
+		f_edit.find('button[type="submit"]').val($(this).val());
+		row_selected = $(this).parents('tr');
 	});
-	
-	// Select Category Name
-	$(document).on('change', '#list-category [name="select-category"]', function(){
-		id = $(this).val();
-		catname = $(this).find('option:selected').text();
-		$('#form-edit-category [name="category-name"]').val(catname);
-		$('.collapse').collapse('hide');
-		if (!id)
-		{
-			$('[data-toggle="collapse"]').prop('disabled', true);
-		}
-		else
-		{
-			$('[data-toggle="collapse"]').prop('disabled', false);
-		}
+	$(document).on('shown.bs.modal', '#edit-category', function(){
+		this.reset();
+		$(this).find('input').focus();
 	});
-	// Edit Category Name
-	$(document).on('submit', '#form-edit-category', function(){
-		var name = $(this).find('[name="category-name"]').val();
-		$(this).next().empty();
+	$(document).on('shown.bs.collapse', '#add-category', function(){
+		this.reset();
+		$(this).find('input').focus();
+	});
+	// Edit - Category
+	$(document).on('submit', '#edit-category', function(){
+		var id = $(this).find('button[type="submit"]').val();
+		var name = $(this).find('input[type="text"]').val();
+		var err = $(this).find('button[type="submit"]').next();
+		err.empty();
 		if (!/\S/.test(name))
 		{
-			$(this).next().html(create_Comment('Tên không được để trống', 'warning'));
+			err.html(create_Comment('Lỗi ! Tên không được để trống', 'warning'));
+			$(this).find('input').focus();
 		}
 		else
 		{
@@ -58,31 +42,33 @@ $(document).ready(function(){
 				type: "POST",
 				url: "/module/action.php",
 				async: false,
-				data: {action: "modify-category", id: id, name: name}
+				data: {action: "modify-category" , id: id, name: name},
 			}).done(function(){
-				show_Success("Cập nhật thông tin danh mục thành công.");
-				load_Categories();
+				alert("Cập nhật danh mục thành công");
+				table.reLoad();
 			});
+			$(this).modal('hide');
+			show_UpdateSuccess(find_Td(id));
 		}
 		return false;
 	});
-	// Remove Category
-	$(document).on('click', '#list-category [name="remove-category"]', function(e){
-		e.preventDefault();
-		if (id && confirm("Bạn có chắc chắn muốn xóa danh mục \"" + catname + "\" ?"))
+	// Remove - Category
+	$(document).on('click', '.delete-category', function(){
+		if (confirm("Bạn có chắc chắn muốn xóa danh mục này ?"))
 		{
+			var id = $(this).val();
 			$.ajax({
 				type: "POST",
-				url : "/module/action.php",
+				url: "/module/action.php",
 				async: false,
-				data: {action: "remove-category", categoryid: id}
+				data: {action: "remove-category", id: id}
 			}).done(function(){
-				show_Success("Đã xóa danh mục \"" + catname + "\"");
-				id = "";
-				load_Categories();
+				alert("Đã xóa thành công");
+				table.reLoad();
 			});
 		}
 	});
+	
 	// Add Category
 	$(document).on('submit', '#add-category', function(){
 		var categoryname = $(this).find('input[type="text"]');
@@ -101,13 +87,12 @@ $(document).ready(function(){
 				data: {action: "add-category", categoryname: categoryname.val()},
 				dataType: "json"
 			}).done(function(result){
-				show_Success("Thêm danh mục \"" + categoryname.val() + "\" thành công.");
-				id = result;
-				load_Categories();
+				load_Table();
+				show_UpdateSuccess(find_Td(result));
 			});
+			this.reset();
+			$(this).collapse('hide');
 		}
-		categoryname.val('');
 		return false;
 	});
-	load_Categories();
 });

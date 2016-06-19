@@ -2,7 +2,7 @@
 
 $host = $_SERVER["SERVER_NAME"];
 $user = "root";
-$pass = "";
+$pass = "Trunghust250996";
 $dbname = "elibrary";
 
 ?>

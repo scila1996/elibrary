@@ -7,6 +7,7 @@ abstract class Account
 	protected $pass = "";
 	protected $name = "";
 	protected $last = "";
+	protected $time_login = "";
 	protected $fail = TRUE;
 	public function get_User()
 	{
@@ -32,6 +33,10 @@ abstract class Account
 		}
 		return $this->last;
 	}
+	public function get_TimeLogin()
+	{
+		return $this->time_login;
+	}
 	public function is_Fail()
 	{
 		return $this->fail;
@@ -52,6 +57,7 @@ class Admin extends Account
 			$this->pass = sha1($pass);
 			$this->name = $admin["name"];
 			$this->last = $admin["last"];
+			$this->time_login = new DateTime();
 			return $this->fail = FALSE;
 		});
 	} 
@@ -193,9 +199,10 @@ class Admin extends Account
 			VALUES ('$id', '$isid', '$books[$i]', 1)
 			");
 		}
-		$ret = "";
+		$ret = array();
+		$ret["id"] = $isid;
 		Sql::select_WithCallBack("SELECT CRC32('$isid') AS 'code'", function($res) use (&$ret){
-			$ret = $res["code"];
+			$ret["code"] = $res["code"];
 			return false;
 		});
 		return $ret;

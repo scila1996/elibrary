@@ -1,44 +1,72 @@
-@media (min-width: 1366px) {
-	body
-	{
-		width: 80%;
-		position: relative;
-		left: 10%;
-		border: 1px solid #ddd;
-		padding-bottom: 25px;
-	}
-}
-
-@media (min-width: 1600px) {
-	body
-	{
-		width: 70%;
-		position: relative;
-		left: 15%;
-		border: 1px solid #ddd;
-		padding-bottom: 25px;
-	}
+body, html
+{
+	margin: 0;
+	padding: 0;
 }
 
 body
 {
-	padding: 15px;
+	background-image: url("/module/template/images/bg.jpg");
 }
 
-.format-frame-page
+.wrapper
 {
-	border: 1px solid #ddd;
+	min-height: 100vh;
+	padding: 15px;
+	position: relative;
+	background: white;
+}
+
+@media (min-width: 1366px) {
+	.wrapper
+	{
+		width: 80%;
+		left: 10%;
+		border: 1px solid #ddd;
+	}
+}
+
+@media (min-width: 1600px) {
+	.wrapper
+	{
+		width: 70%;
+		left: 15%;
+		border: 1px solid #ddd;
+	}
+}
+
+@media print
+{
+	@page
+	{
+		margin: 0;
+	}
+	.wrapper
+	{
+		display: none;
+	}
+	#print-order-issue-books
+	{
+		display: inline-block !important;
+	}
 }
 
 .heading
 {
 	background-color: #337ab7;
 	border: 1px solid;
-	border-color: #ddd #ddd white #ddd;
+	border-color: #ddd;
 	padding: 15px;
 	margin: -15px -15px 15px -15px;
 	font-weight: bold;
-	color: #FFFFFF;
+	color: #E2E4EF;
+	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+}
+
+.img-banner
+{
+	max-width: 100%;
+	max-height: 100%;
 }
 
 .no-padding
@@ -50,6 +78,30 @@ body
 .no-radius
 {
 	border-radius: 0px !important;
+}
+
+.content
+{
+	margin-bottom: 80px;
+}
+
+.footer
+{
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	display: table;
+	width: 100%;
+	height: 60px;
+}
+
+.footer .footer-content
+{
+	display: table-cell;
+	vertical-align: middle;
+	padding-top: 25px;
+	padding-bottom: 25px;
 }
 
 .text-80
@@ -121,23 +173,23 @@ button:focus
 	bottom: 50px;
 }
 
+.on-top button
+{
+	height: 50px;
+}
+
 .on-top button *
 {
 	font-size: 25px;
 }
 
-.on-top::after
-{
-	content: 'Về đầu trang';
-	display: inline-block;
-	padding: 10px;
-	color: #408080;
-	font-weight: bold;
-}
-
 #show-loading-gif
 {
 	text-align: center;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
 }
 
 

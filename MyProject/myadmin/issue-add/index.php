@@ -39,22 +39,10 @@ $admin_issue_add = TRUE;
 			</div>
 			<div id="issue-book-for-user">
 				<hr />
-				<form class="form-inline form-group" id="search-books">
-					<div class="input-group">
-						<div class="input-group-addon"><span class="text-default"> Danh mục </span></div>
-						<select class="form-control select-category"></select>
-					</div>
-					<div class="form-group pull-right">
-						<input type="text" class="form-control" placeholder="Tìm sách" />
-						<button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
-					</div>
-				</form>
-				<div id="table-book">
-				</div>
 				<form id="issue-book">
-					<button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-check"></span> Issue </button>
+					<button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-check"></span><strong> Issue Books </strong></button>
 				</form>
-				<div></div>
+				<div class="form-group"></div>
 				<div class="modal fade" id="form-issue-book">
 					<div class="modal-dialog">
 						<div class="modal-content">
@@ -76,10 +64,23 @@ $admin_issue_add = TRUE;
 						</div>
 					</div>
 				</div>
+				<form class="form-inline form-group" id="search-books">
+					<div class="input-group">
+						<div class="input-group-addon"><span class="text-default"> Danh mục </span></div>
+						<select class="form-control select-category"></select>
+					</div>
+					<div class="form-group pull-right">
+						<input type="text" class="form-control" placeholder="Tìm sách" />
+						<button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
+					</div>
+				</form>
+				<div id="table-book">
+				</div>
 			</div>
 		</div>
 		<?php include $_SERVER["DOCUMENT_ROOT"] . "/module/template/footer.php" ?>
 	</body>
 	<script src="/module/js/table.js"></script>
+	<script src="/module/js/print.issue.js"></script>
 	<script src="index.js"></script>
 </html>
