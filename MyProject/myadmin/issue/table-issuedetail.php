@@ -2,8 +2,10 @@
 
 include_once $_SERVER["DOCUMENT_ROOT"] . "/module/class/import.php";
 
+
 if (isset($_POST["table"]))
 {
+	$isid = $_POST["data"]["issueid"];
 	class Load extends Table
 	{
 		public function tr_th()
@@ -13,7 +15,7 @@ if (isset($_POST["table"]))
 				<th> # </th>
 				<th> Sách </th>
 				<th> Trạng thái </th>
-				<th> <button type="button" class="btn btn-primary select-all-submit"><strong> Trả hết </strong></button> </th>
+				<th> <button type="button" class="btn btn-primary select-all-submit" value="<?php global $isid; echo $isid ?>"><strong> Trả hết </strong></button> </th>
 			</tr>
 			<?php
 		}
@@ -38,7 +40,6 @@ if (isset($_POST["table"]))
 	";
 	if (isset($_POST["data"]))
 	{
-		$isid = $_POST["data"]["issueid"];
 		$table->query .= "
 			AND
 			(
@@ -46,6 +47,9 @@ if (isset($_POST["table"]))
 			)
 		";
 	}
+	$table->query .= "
+		ORDER BY issuedetails.state DESC
+	";
 	$load = new Load($table);
 }
 ?>

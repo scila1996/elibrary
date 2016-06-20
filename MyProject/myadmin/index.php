@@ -39,7 +39,7 @@ $admin_info = TRUE;
 			?>
 			<p><strong> Thời gian hoạt động </strong> : "<span time-current="<?php echo $cur ?>" time-active="<?php echo $log ?>"> Loading ... </span>" </p>
 			<hr />
-			<a href="" class="btn btn-primary"><strong> Refresh <span class="glyphicon glyphicon-refresh"></span></strong></a>
+			<a href="/module/action.php?action=logout" class="btn btn-primary"><strong> Sign Out <span class="glyphicon glyphicon-refresh"></span></strong></a>
 		</h4>
 		<?php include $_SERVER["DOCUMENT_ROOT"] . "/module/template/footer.php" ?>
 	</body>

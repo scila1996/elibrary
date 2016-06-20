@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jun 19, 2016 at 07:29 PM
+-- Generation Time: Jun 20, 2016 at 01:11 PM
 -- Server version: 10.1.10-MariaDB
 -- PHP Version: 5.6.15
 
@@ -28,11 +28,13 @@ USE `elibrary`;
 -- Table structure for table `admins`
 --
 
-CREATE TABLE `admins` (
+DROP TABLE IF EXISTS `admins`;
+CREATE TABLE IF NOT EXISTS `admins` (
   `name` char(50) NOT NULL DEFAULT 'Quản trị viên',
   `user` char(30) NOT NULL,
   `pass` char(100) NOT NULL DEFAULT 'd033e22ae348aeb5660fc2140aec35850c4da997',
-  `last` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `last` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  UNIQUE KEY `user` (`user`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -40,7 +42,7 @@ CREATE TABLE `admins` (
 --
 
 INSERT INTO `admins` (`name`, `user`, `pass`, `last`) VALUES
-('Nguyễn Trung', 'root', '9c7a31a8336cabd3298dbfef065214245e4a4176', '2016-06-19 23:56:59');
+('Nguyễn Trung', 'root', '9c7a31a8336cabd3298dbfef065214245e4a4176', '2016-06-20 16:52:51');
 
 -- --------------------------------------------------------
 
@@ -48,7 +50,8 @@ INSERT INTO `admins` (`name`, `user`, `pass`, `last`) VALUES
 -- Table structure for table `books`
 --
 
-CREATE TABLE `books` (
+DROP TABLE IF EXISTS `books`;
+CREATE TABLE IF NOT EXISTS `books` (
   `id` char(50) NOT NULL,
   `categoryid` char(50) NOT NULL,
   `dateadd` date NOT NULL,
@@ -60,7 +63,11 @@ CREATE TABLE `books` (
   `pubyear` int(11) NOT NULL,
   `description` text NOT NULL,
   `amount` int(11) NOT NULL,
-  `page` int(11) NOT NULL
+  `page` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id` (`id`),
+  UNIQUE KEY `code` (`code`),
+  KEY `categoryid` (`categoryid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -476,9 +483,12 @@ INSERT INTO `books` (`id`, `categoryid`, `dateadd`, `title`, `code`, `author`, `
 -- Table structure for table `categories`
 --
 
-CREATE TABLE `categories` (
+DROP TABLE IF EXISTS `categories`;
+CREATE TABLE IF NOT EXISTS `categories` (
   `id` char(50) NOT NULL,
-  `name` char(255) NOT NULL
+  `name` char(255) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `categoryid` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -495,11 +505,15 @@ INSERT INTO `categories` (`id`, `name`) VALUES
 -- Table structure for table `issuedetails`
 --
 
-CREATE TABLE `issuedetails` (
+DROP TABLE IF EXISTS `issuedetails`;
+CREATE TABLE IF NOT EXISTS `issuedetails` (
   `id` char(50) NOT NULL,
   `issueid` char(50) NOT NULL,
   `bookid` char(50) NOT NULL,
-  `state` tinyint(4) NOT NULL
+  `state` tinyint(4) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `issueid` (`issueid`),
+  KEY `bookid` (`bookid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -507,13 +521,16 @@ CREATE TABLE `issuedetails` (
 --
 
 INSERT INTO `issuedetails` (`id`, `issueid`, `bookid`, `state`) VALUES
+('00fabe910cae5967e2bffa193833658b', 'a33d6ddafc0c4eb536b4644a673d55c0', '00abaf773890947f477e529a039c7e54', 0),
 ('04d7d7553a2f57a4f7d9425dc5465947', '4a54e4787690b9cff4bb7f10f59f5d6d', '095ca461d77f8ac7f8cdfb53860793f0', 0),
 ('0653ba084bf751f0b6fa502ecc4a0cbd', '0146c4ceb78a51db62a82614b1b94c4e', '004554a287a3d89d81bd3d836806d935', 0),
 ('162ba20a2646a8f7d0effae89ca6631d', '1c08f4755455093d0615a825e80ffc96', '41f929978ad51081d486f9e3e9ae0f14', 0),
 ('1aff6c92e8572b5acf0876d5841c48b5', 'ca96421045a7d0a95fb35ca9399fd1a5', '035384d869bb312eb68c7b15ebed79e3', 0),
 ('1b21eb7ff0b92f9c2388130e4ba269d1', '4a54e4787690b9cff4bb7f10f59f5d6d', '035384d869bb312eb68c7b15ebed79e3', 0),
 ('1d6622d8bb106a6d28cf90ef8478d2d5', '3aaf96a100f6efc26634821e391a9ec4', '083994abb440bed28d084b6c158f4c91', 0),
+('1f6eed6907b0866e6635e67b892ac875', 'a33d6ddafc0c4eb536b4644a673d55c0', '035384d869bb312eb68c7b15ebed79e3', 0),
 ('26c37876c72283c54ed7ac787ba1964f', 'c0fbe60bf3e6222c82aec0740334ab20', '004554a287a3d89d81bd3d836806d935', 0),
+('2efe58a4465444c7f4c5ebd8ded71684', '2239872fb2dfaccd6e418243eece90fb', '012c9dfc8e9d3faf38d83ea8c6eb347b', 0),
 ('2f25591437c4d72e3d3f258866f00087', '3aaf96a100f6efc26634821e391a9ec4', '012c9dfc8e9d3faf38d83ea8c6eb347b', 0),
 ('323d7ba99010ca5c549d66b70d3672b9', '1c08f4755455093d0615a825e80ffc96', '3b99c19601eead04feaec05bccbabdc7', 0),
 ('36bc0e6b89b7b7073d3a3aeefc8e66b6', '3aaf96a100f6efc26634821e391a9ec4', '0324f984221e9c2f742042c6e9f73203', 0),
@@ -524,30 +541,45 @@ INSERT INTO `issuedetails` (`id`, `issueid`, `bookid`, `state`) VALUES
 ('4f7650bf9729ac9391984302c342a197', '1c08f4755455093d0615a825e80ffc96', '767603647781808f90c12b7f0430515e', 0),
 ('53c065c2e9c7a23c441a539d9edc5f74', '3aaf96a100f6efc26634821e391a9ec4', '004554a287a3d89d81bd3d836806d935', 0),
 ('5722b82196cb31d3b2c1ab78d25a9d1a', 'd290951a90da9f94bed77eb5f0b85541', '004554a287a3d89d81bd3d836806d935', 0),
+('5733c59901439c907ac056358f278e3f', '285686af79b91ab50cfd6e372ed2371c', '035384d869bb312eb68c7b15ebed79e3', 0),
 ('596f1d2bbc6767e29c0c59093f58b025', 'c6d6561ff97b0138a756181ca2639260', '0324f984221e9c2f742042c6e9f73203', 0),
 ('5bfa60a7b6d8adac4d85dbc01d9f9dcb', 'ca96421045a7d0a95fb35ca9399fd1a5', '004554a287a3d89d81bd3d836806d935', 0),
+('5c392441cadbccd991c63a1dd78256c1', 'a33d6ddafc0c4eb536b4644a673d55c0', '012c9dfc8e9d3faf38d83ea8c6eb347b', 0),
+('620d9c7e4a1e5a1b2b3c61e01b63fb38', 'bbd3b55cc793b2ccf1e8b8fcee831499', '012c9dfc8e9d3faf38d83ea8c6eb347b', 0),
 ('637e7ad64466a1ca10c059b80dd6b202', 'ca96421045a7d0a95fb35ca9399fd1a5', '012c9dfc8e9d3faf38d83ea8c6eb347b', 0),
+('639d805f785f7f5891bc61397c36b964', '285686af79b91ab50cfd6e372ed2371c', '004554a287a3d89d81bd3d836806d935', 0),
 ('663578715f6add44c34fd497a3b4f2eb', '2cf3dd4f096e5f1af4d9d5a4d9b05fb8', '004554a287a3d89d81bd3d836806d935', 0),
 ('6bc108010124c3f4c42fe45d29f2c09c', '4a54e4787690b9cff4bb7f10f59f5d6d', '0389068587387494d760b9212be5fcef', 0),
 ('6c36eb3e5e112b9b1f83661466fa4ff8', '1c08f4755455093d0615a825e80ffc96', '404b998ac7a26d6a0463a594f79ee36f', 0),
+('746ee7db5fca9bccc0b3d65a6dc4273f', '2239872fb2dfaccd6e418243eece90fb', '00abaf773890947f477e529a039c7e54', 0),
 ('754066d1feb07ca155e972279ade634c', 'e9bef8e65ebe224347c3cee43b4ece80', '00abaf773890947f477e529a039c7e54', 0),
+('80197d9f8cc79a078115aa29deb9d0ae', '285686af79b91ab50cfd6e372ed2371c', '0324f984221e9c2f742042c6e9f73203', 0),
+('806ab5ecfb2b8eddbb167bbd6160e058', 'a33d6ddafc0c4eb536b4644a673d55c0', '004554a287a3d89d81bd3d836806d935', 0),
 ('837c261d5bc99343dcfb33cf47b6ee37', '4a54e4787690b9cff4bb7f10f59f5d6d', '004554a287a3d89d81bd3d836806d935', 0),
 ('906fed35cbe34d65892777e0a33bf453', '00ea561dbb90b06e35e690dfa5226ae5', '0324f984221e9c2f742042c6e9f73203', 0),
 ('91136bfec93c8461d0aec76f8f3afda6', '1c08f4755455093d0615a825e80ffc96', '7d12239662e64acd58e1a618be1277eb', 0),
 ('99bb6d4b1d54b23b8e48a8a3ee270550', 'f5335bba95aa9bde2d46477b202d05ab', '004554a287a3d89d81bd3d836806d935', 0),
 ('a0362db8c7eeaea0968f2587e0ead726', 'ca96421045a7d0a95fb35ca9399fd1a5', '0389068587387494d760b9212be5fcef', 0),
+('a0ba739b2d55c9786ba92f7013f9d6cb', '2239872fb2dfaccd6e418243eece90fb', '0324f984221e9c2f742042c6e9f73203', 0),
+('a1628d9f9cd7444fd9e818dc6c25d1c5', 'bbd3b55cc793b2ccf1e8b8fcee831499', '004554a287a3d89d81bd3d836806d935', 0),
+('a7309e1c9821d65171a99421d6acc742', '285686af79b91ab50cfd6e372ed2371c', '06d252592c48f5e523f9b1f5d3cf423b', 0),
 ('a89811f999005e7cef7f75fb4fe9745c', '5659aeb722e1951f356b855c93d6fb34', '00abaf773890947f477e529a039c7e54', 0),
 ('abe0978ee46a47d75b679531833492a1', '4a54e4787690b9cff4bb7f10f59f5d6d', '083994abb440bed28d084b6c158f4c91', 0),
+('b0a387ec6316445e2f17cf05ec4d2db1', 'a33d6ddafc0c4eb536b4644a673d55c0', '0324f984221e9c2f742042c6e9f73203', 0),
 ('b194971c9408f3601702bade21f1ed47', '3aaf96a100f6efc26634821e391a9ec4', '035384d869bb312eb68c7b15ebed79e3', 0),
 ('b4c9190c540d4a0d9e35f9ec55a2942a', '1c08f4755455093d0615a825e80ffc96', '56feff7f498d9e8c2f495adc3744fb82', 0),
 ('ba1d0e0c3040ad2007795fb79661b2de', 'c6d6561ff97b0138a756181ca2639260', '004554a287a3d89d81bd3d836806d935', 0),
 ('bc16500514e51faf61c74c6a8b6e86d0', 'c6d6561ff97b0138a756181ca2639260', '0389068587387494d760b9212be5fcef', 0),
 ('bc23e081206409cb909516e16079f056', '00ea561dbb90b06e35e690dfa5226ae5', '012c9dfc8e9d3faf38d83ea8c6eb347b', 0),
+('c0b12a046da258a3fbee60cba92f2799', 'bbd3b55cc793b2ccf1e8b8fcee831499', '00abaf773890947f477e529a039c7e54', 0),
 ('ca9f2d332ce23bbb73270087b8b4edd1', '3aaf96a100f6efc26634821e391a9ec4', '06d252592c48f5e523f9b1f5d3cf423b', 0),
 ('d2bf7c447f4172ef3b67dec16ed4b7c8', 'c6d6561ff97b0138a756181ca2639260', '06d252592c48f5e523f9b1f5d3cf423b', 0),
 ('dec7bfdaee23632ba097012371f720e2', '5659aeb722e1951f356b855c93d6fb34', '004554a287a3d89d81bd3d836806d935', 0),
+('df88975f2ce4e0720ecb6a24df3b074b', '2239872fb2dfaccd6e418243eece90fb', '004554a287a3d89d81bd3d836806d935', 0),
 ('e02b16c8a26585ed911e66bb1c2db1b6', '4a54e4787690b9cff4bb7f10f59f5d6d', '03a901a5d946327accc2953f94a2a3a3', 0),
 ('e71be8ed73b4b6089556b3bff313ad23', 'd290951a90da9f94bed77eb5f0b85541', '00abaf773890947f477e529a039c7e54', 0),
+('e790bf7528afd48786a6c188c9229ef3', 'a33d6ddafc0c4eb536b4644a673d55c0', '0389068587387494d760b9212be5fcef', 0),
+('e7c5e54f04aef66b0a88777f0c77f17e', '285686af79b91ab50cfd6e372ed2371c', '00abaf773890947f477e529a039c7e54', 0),
 ('e8519edb50481fb7c1a29780945740cd', '3aaf96a100f6efc26634821e391a9ec4', '00abaf773890947f477e529a039c7e54', 0),
 ('ec93c18a800e68246b72321246bf6e8e', '4a54e4787690b9cff4bb7f10f59f5d6d', '012c9dfc8e9d3faf38d83ea8c6eb347b', 0),
 ('ed8d64c4935ea9cc441b8f7c36549e78', 'e9bef8e65ebe224347c3cee43b4ece80', '004554a287a3d89d81bd3d836806d935', 0),
@@ -561,11 +593,15 @@ INSERT INTO `issuedetails` (`id`, `issueid`, `bookid`, `state`) VALUES
 -- Table structure for table `issues`
 --
 
-CREATE TABLE `issues` (
+DROP TABLE IF EXISTS `issues`;
+CREATE TABLE IF NOT EXISTS `issues` (
   `id` char(50) NOT NULL,
   `user` char(30) NOT NULL,
   `dateissue` datetime NOT NULL,
-  `datesubmit` date NOT NULL
+  `datesubmit` date NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id` (`id`),
+  KEY `user` (`user`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -576,10 +612,14 @@ INSERT INTO `issues` (`id`, `user`, `dateissue`, `datesubmit`) VALUES
 ('00ea561dbb90b06e35e690dfa5226ae5', 'scila1996', '2016-06-19 22:56:07', '2016-12-19'),
 ('0146c4ceb78a51db62a82614b1b94c4e', 'scila1996', '2016-06-19 23:04:58', '2016-12-19'),
 ('1c08f4755455093d0615a825e80ffc96', '734148', '2016-06-16 02:53:02', '2016-12-16'),
+('2239872fb2dfaccd6e418243eece90fb', 'scila1996', '2016-06-20 12:44:17', '2016-12-20'),
+('285686af79b91ab50cfd6e372ed2371c', 'scila1996', '2016-06-20 12:42:32', '2016-12-20'),
 ('2cf3dd4f096e5f1af4d9d5a4d9b05fb8', 'scila1996', '2016-06-19 23:06:30', '2016-12-19'),
 ('3aaf96a100f6efc26634821e391a9ec4', 'scila1996', '2016-06-16 02:44:21', '2016-12-16'),
 ('4a54e4787690b9cff4bb7f10f59f5d6d', 'scila1996', '2016-06-16 17:07:02', '2016-12-16'),
 ('5659aeb722e1951f356b855c93d6fb34', 'scila1996', '2016-06-19 23:08:50', '2016-12-19'),
+('a33d6ddafc0c4eb536b4644a673d55c0', 'scila1996', '2016-06-20 12:15:57', '2016-12-20'),
+('bbd3b55cc793b2ccf1e8b8fcee831499', 'scila1996', '2016-06-20 12:33:22', '2016-12-20'),
 ('c0fbe60bf3e6222c82aec0740334ab20', 'scila1996', '2016-06-19 23:04:27', '2016-12-19'),
 ('c6d6561ff97b0138a756181ca2639260', 'scila1996', '2016-06-20 00:00:58', '2016-12-20'),
 ('ca96421045a7d0a95fb35ca9399fd1a5', 'scila1996', '2016-06-20 00:00:04', '2016-12-20'),
@@ -594,7 +634,8 @@ INSERT INTO `issues` (`id`, `user`, `dateissue`, `datesubmit`) VALUES
 -- Table structure for table `issue_rule`
 --
 
-CREATE TABLE `issue_rule` (
+DROP TABLE IF EXISTS `issue_rule`;
+CREATE TABLE IF NOT EXISTS `issue_rule` (
   `month` int(11) NOT NULL,
   `total` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -612,11 +653,14 @@ INSERT INTO `issue_rule` (`month`, `total`) VALUES
 -- Table structure for table `users`
 --
 
-CREATE TABLE `users` (
+DROP TABLE IF EXISTS `users`;
+CREATE TABLE IF NOT EXISTS `users` (
   `user` char(30) NOT NULL,
   `pass` char(100) NOT NULL,
   `name` char(50) NOT NULL,
-  `state` bit(2) NOT NULL
+  `state` bit(2) NOT NULL,
+  PRIMARY KEY (`user`),
+  UNIQUE KEY `user` (`user`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -626,55 +670,6 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`user`, `pass`, `name`, `state`) VALUES
 ('734148', '7c4a8d09ca3762af61e59520943dc26494f8941b', 'Ng Trung', b'11'),
 ('scila1996', '7c4a8d09ca3762af61e59520943dc26494f8941b', 'Nguyen Trung', b'11');
-
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `admins`
---
-ALTER TABLE `admins`
-  ADD UNIQUE KEY `user` (`user`);
-
---
--- Indexes for table `books`
---
-ALTER TABLE `books`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `id` (`id`),
-  ADD UNIQUE KEY `code` (`code`),
-  ADD KEY `categoryid` (`categoryid`);
-
---
--- Indexes for table `categories`
---
-ALTER TABLE `categories`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `categoryid` (`id`);
-
---
--- Indexes for table `issuedetails`
---
-ALTER TABLE `issuedetails`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `issueid` (`issueid`),
-  ADD KEY `bookid` (`bookid`);
-
---
--- Indexes for table `issues`
---
-ALTER TABLE `issues`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `id` (`id`),
-  ADD KEY `user` (`user`);
-
---
--- Indexes for table `users`
---
-ALTER TABLE `users`
-  ADD PRIMARY KEY (`user`),
-  ADD UNIQUE KEY `user` (`user`);
 
 --
 -- Constraints for dumped tables

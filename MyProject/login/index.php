@@ -26,24 +26,44 @@ $login_active = TRUE;
 		<?php
 		include $_SERVER["DOCUMENT_ROOT"] . "/module/template/header.php";
 		?>
-		<div class="col-md-8 col-md-push-2 no-padding">
-			<form class="panel panel-primary" method="post" action="/module/action.php">
-				<div class="panel-heading"> <strong> Đăng nhập </strong> </div>
-				<div class="panel-body">
-					<?php if (Misc::has_Alert()) Misc::show_Alert() ?>
-					<div class="input-group form-group">
-						<div class="input-group-addon"> <div class="text-80"> <strong> Tài khoản </strong></div> </div>
-						<input type="text" class="form-control" placeholder="Tên tài khoản" name="user"/>
+		<style>
+			.wrapper-login
+			{
+				padding-top: 25px;
+				width: 100vw;
+				display: table-cell;
+				vertical-align: middle;
+				text-align: center;
+			}
+			.login-body
+			{
+				display: inline-block;
+				padding: 15px;
+				box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6);
+			}
+		</style>
+		<div class="wrapper-login">
+			<div class="form-group" style="display: inline-block">
+				<?php if (Misc::has_Alert()) Misc::show_Alert() ?>
+				<form class="well well-sm login-body" method="post" action="/module/action.php">
+					<div class="well well-sm text-left">
+						<strong><a href="/" class="btn btn-link"><span class="glyphicon glyphicon-home"></span> Quay về trang chủ </a> </strong>
 					</div>
-					<div class="input-group">
-						<div class="input-group-addon"> <div class="text-80"> <strong> Mật khẩu </strong></div> </div>
-						<input type="password" class="form-control" placeholder="Mật khẩu tài khoản" name="pass"/>
+					<div class="form-group form-inline">
+						<div class="input-group form-group form-inline">
+							<div class="input-group-addon"> <div class="text-80"> <strong> Tài khoản </strong></div> </div>
+							<input type="text" class="form-control" placeholder="Tên tài khoản" name="user"/>
+						</div>
 					</div>
-				</div>
-				<div class="panel-footer">
-					<button type="submit" class="btn btn-primary" name="action" value="login"> Đăng nhập </button>
-				</div>
-			</form>
+					<div class="form-group form-inline">
+						<div class="input-group">
+							<div class="input-group-addon"> <div class="text-80"> <strong> Mật khẩu </strong></div> </div>
+							<input type="password" class="form-control" placeholder="Mật khẩu tài khoản" name="pass"/>
+						</div>
+					</div>
+					<button type="submit" class="btn btn-primary" style="width: 100%" name="action" value="login"><strong><span class="glyphicon glyphicon-lock"></span> Sign In </strong></button>
+				</form>
+			</div>
 		</div>
 		<?php
 		include $_SERVER["DOCUMENT_ROOT"] . "/module/template/footer.php";

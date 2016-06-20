@@ -20,6 +20,11 @@ $(document).ready(function(){
 			issueid: issueid
 		};
 		table_issue_detail = new Table(url, data, "#table-issue-detail");
+		var t = $(document).find('#table-issue-detail');
+		if (t.find('.select-submit:not([disabled])').length == 0)
+		{
+			t.find('.select-all-submit').attr('disabled', true);
+		}
 	}
 	load_TableIssue();
 	// Search by User, Name, Code
@@ -56,18 +61,16 @@ $(document).ready(function(){
 	$('#form-submit-books').on('hidden.bs.modal', function(){
 		table.reLoad();
 	});
+	// Submit All Books
 	$(document).on('click', '#table-issue-detail .select-all-submit', function(){
-		while (true)
-		{
-			var list = $(document).find('#table-issue-detail .select-submit:not([disabled])');
-			if (list.length)
-			{
-				list.trigger('click');
-			}
-			else
-			{
-				break;
-			}
-		}
+		var isid = $(this).val();
+		$.ajax({
+			type: "POST",
+			url: "/module/action.php",
+			async: false,
+			data: {action: "submit-all-books", isid: isid},
+		}).done(function(){
+			load_TableIssueDetail(isid);
+		});
 	});
 });

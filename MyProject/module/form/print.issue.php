@@ -52,7 +52,12 @@ if (isset($_POST["print"]))
 				}
 				?>
 			</ol>
+			<hr />
 			<p> Tổng tiền mượn : <?php echo $total_price ?> vnd </p>
+			<hr />
+			<p style="font-style: italic">
+				Thư viện điện tử eLibrary - Thủ thư : <?php echo $_SESSION["admin"]->get_Name() ?> .
+			</p>
 		</div>
 	</div>
 	<?php

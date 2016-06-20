@@ -213,6 +213,12 @@ class Admin extends Account
 		$connect->query("UPDATE issuedetails SET state = 0 WHERE issuedetails.id = '$issuedetail_id'");
 		$connect->close();
 	}
+	public function submit_AllBooks($isid)
+	{
+		$connect = Sql::open_MySQL();
+		$connect->query("UPDATE issuedetails SET state = 0 WHERE issuedetails.issueid = '$isid'");
+		$connect->close();
+	}
 	public function delete_IssueEmpty()
 	{
 		$connect = Sql::open_MySQL();

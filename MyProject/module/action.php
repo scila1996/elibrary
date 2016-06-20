@@ -18,7 +18,7 @@ if (isset($_POST["action"]))
 				$result = new User($_POST["user"], $_POST["pass"]);
 				if ($result->is_Fail())
 				{
-					Misc::create_Alert("alert-warning", "<strong> ERROR : </strong> Sai mật khẩu hoặc tài khoản");
+					Misc::create_Alert("alert-danger", "<strong> ERROR : </strong> Sai mật khẩu hoặc tài khoản");
 					header("Location:/login");
 				}
 				else
@@ -177,6 +177,11 @@ if (isset($_POST["action"]))
 			$_SESSION["admin"]->submit_Book($_POST["id"]);
 			exit("");
 		}
+		case 'submit-all-books':
+		{
+			$_SESSION["admin"]->submit_AllBooks($_POST["isid"]);
+			exit("");
+		} 
 		case 'get-issue-rule':
 		{
 			$ret = 0;
