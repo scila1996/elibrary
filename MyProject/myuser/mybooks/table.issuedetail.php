@@ -20,7 +20,7 @@ if (isset($_POST["table"]))
 		{
 			?>
 			<tr>
-				<td> <?php echo $order ?> </td>
+				<td style="font-weight: bold"> <?php echo $order ?> </td>
 				<td> <?php echo $issue["booktitle"] ?> </td>
 				<td> <?php echo $issue["state"] == 1 ? "Đang mượn - chưa trả" : "Đã trả" ?> </td>
 			</tr>

@@ -11,7 +11,8 @@ if (isset($_POST["table"]))
 			?>
 			<tr class="active">
 				<th> # </th>
-				<th> Books </th>
+				<th> Tên sách </th>
+				<th> Số sách còn lại </th>
 				<th></th>
 			</tr>
 			<?php
@@ -22,6 +23,7 @@ if (isset($_POST["table"]))
 			<tr class="text-left">
 				<td><strong> <?php echo $order ?> </strong></td>
 				<td> <?php echo $row["title"] ?> </td>
+				<td> <?php echo $row["total"] ?> </td>
 				<td>
 					<button type="button" class="btn btn-link pull-right book-detail" value="<?php echo $row["id"] ?>"><span class="glyphicon glyphicon-ok-circle"></span> Chi tiết </button>
 				</td>
@@ -31,9 +33,13 @@ if (isset($_POST["table"]))
 	}
 	$table = (object)($_POST["table"]);
 	$table->query = "
-	SELECT books.*, categories.name AS 'categoryname'
-	FROM books JOIN categories
-	ON books.categoryid = categories.id
+	SELECT
+		books.*,
+		categories.name AS 'categoryname',
+		(books.amount - COUNT(issuedetails.id)) AS 'total'
+	FROM books
+		JOIN categories ON categories.id = books.categoryid
+		LEFT JOIN issuedetails ON issuedetails.bookid = books.id AND issuedetails.state = 1
 	WHERE 1
 	";
 	if (isset($_POST["data"]))
@@ -56,6 +62,9 @@ if (isset($_POST["table"]))
 			)
 		";
 	}
+	$table->query .= "
+		GROUP BY books.id
+	";
 	$Load = new Load($table);
 	exit("");
 }

@@ -23,7 +23,11 @@ function Table(url, data_post, output, func)
 			hide_Loading();
 		});
 		if (func !== undefined && func) func(arguments);
-		Init();
+	};
+	var scroll_onTable = function(){
+		$('body').animate({
+			scrollTop: $(output).offset().top
+		});
 	};
 	$(document).off('click', output + ' .page');
 	$(document).on('click', output + ' .page', function(e){
@@ -31,11 +35,13 @@ function Table(url, data_post, output, func)
 		var page = parseInt($(this).attr('href').match(/\d+\s{0,}$/));
 		data.table.page = page;
 		Load();
+		scroll_onTable();
 	});
 	$(document).on('change', output + ' .set-pagesize', function(){
 		var size = $(this).val();
 		data.table.pagesize = size;
 		Load();
+		scroll_onTable();
 	});
 	this.reLoad = function(){
 		Load();

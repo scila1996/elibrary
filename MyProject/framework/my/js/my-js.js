@@ -4,8 +4,8 @@ function Init()
 		$(this).tooltip('show');
 	});
 	$(document).find('.alert-hide').hide();
-	$(document).find('.on-top').hide();
-	$(document).find('.on-top').removeClass('hide');
+	$(document).find('.scroll-to').hide();
+	$(document).find('.scroll-to').removeClass('hide');
 	$(document).on('click', '.alert a', function(){
 		$(this).parent().hide();
 	});
@@ -13,17 +13,28 @@ function Init()
 		$(this).blur();
 	});
 	$(window).scroll(function(){
+		var jump_to = $(document).find('.scroll-to');
 		if ($(this).scrollTop() >= $(this).height())
 		{
-			$(document).find('.on-top').show();
+			jump_to.fadeIn(100);
 		}
 		else
 		{
-			$(document).find('.on-top').hide();
+			jump_to.fadeOut(0);
 		}
 	});
-	$(document).on('click', '.on-top', function(){
-		$(window).scrollTop(0);
+	$(document).find('.scroll-to button').on('click', function(){
+		var v = $(this).val();
+		switch (v)
+		{
+			case 'top':
+				v = 0;
+				break;
+			case 'bottom':
+				v = $(document).height();
+				break;
+		}
+		$(window).scrollTop(v);
 	});
 }
 

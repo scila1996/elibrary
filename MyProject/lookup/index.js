@@ -19,6 +19,7 @@ $(document).ready(function(){
 	});
 	// Show search form
 	$(document).on('shown.bs.collapse', '#search-adv', function(e){
+		$(this).find('input:eq(0)').focus();
 		$('#table-book').hide();
 	});
 	$(document).on('hidden.bs.collapse', '#search-adv', function(e){

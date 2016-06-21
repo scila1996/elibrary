@@ -58,9 +58,9 @@
 				?>
 				<ul class="nav navbar-nav" style="margin-left: -15px">
 					<li class="<?php if (isset($homepage_active)) echo "active"?>"><a href="/home"> <span class="glyphicon glyphicon-home"></span> Trang chủ </a></li>
-					<li class="<?php if (isset($intro_active)) echo "active"?>"><a href="#"> <span class="	glyphicon glyphicon-info-sign"></span> Giới thiệu </a></li>
+					<li class="<?php if (isset($intro_active)) echo "active"?>"><a href="/intro"> <span class="	glyphicon glyphicon-info-sign"></span> Giới thiệu </a></li>
 					<li class="<?php if (isset($lookup_active)) echo "active"?>"><a href="/lookup"> <span class="glyphicon glyphicon-search"></span> Tra cứu </a></li>
-					<li class="<?php if (isset($help_active)) echo "active"?>"><a href="#"> <span class="glyphicon glyphicon-question-sign"></span> Trợ giúp </a></li>
+					<li class="<?php if (isset($help_active)) echo "active"?>"><a href="/help"> <span class="glyphicon glyphicon-question-sign"></span> Trợ giúp </a></li>
 				</ul>
 				<?php
 			}
@@ -75,11 +75,22 @@
 					}
 					elseif (isset($_SESSION["user"]))
 					{
-						?> <a href="/myuser"><span class="glyphicon glyphicon-user"></span> <?php echo $_SESSION["user"]->get_User(); ?> </a> <?php
+						?>
+						<li><a class="dropdown-toggle" data-toggle="dropdown" href="javascript:void(0)"> <span class="glyphicon glyphicon-user"></span> <?php echo $_SESSION["user"]->get_User() ?> <span class="caret"></span></a>
+							<ul class="dropdown-menu nav nav-pills nav-stacked" style="margin-top: 5px; padding: 5px">
+								<?php $active = "list-group-item-info"; ?>
+								<li><a><strong class="text-info"> <?php echo $_SESSION["user"]->get_Name() ?> </strong></a></li>
+								<li class="divider"></li>
+								<li><a href="/myuser/chpwd" class="text-info <?php if (isset($user_password)) echo $active ?>"><div class="text-info"><span class="glyphicon glyphicon-lock"></span> Đổi mật khẩu </div></a></li>
+								<li><a href="/myuser/mybooks" class="text-info <?php if (isset($user_issuebook)) echo $active ?>"><div class="text-info"><span class="glyphicon glyphicon-calendar"></span> Lịch sử mượn sách </div></a></li>
+								<li><a href="/module/action.php?action=logout" class="text-info"><div class="text-info"><span class="glyphicon glyphicon-log-out"></span> Đăng xuất </div></a></li>
+							</ul>
+						</li>
+						<?php
 					}
 					else
 					{
-						?> <a href="/login"><span class="glyphicon glyphicon-log-in"></span> Login</a> <?php
+						?> <a href="/login"><span class="glyphicon glyphicon-log-in"></span> Login </a> <?php
 					}
 					?>
 				</li>

@@ -21,7 +21,7 @@ $user_issuebook = TRUE;
 		<?php
 		include $_SERVER["DOCUMENT_ROOT"] . "/module/template/header.php";
 		?>
-		<div class="form-inline form-group pull-left">
+		<div class="form-inline form-group pull-right">
 			<select class="form-control" name="select-state">
 				<option value=""> Tất cả </option>
 				<option value="0"> Đã trả hết </option>

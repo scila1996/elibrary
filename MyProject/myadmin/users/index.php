@@ -35,30 +35,32 @@ $_SESSION["admin"]->select_User = "";
 			<div class="form-inline form-group text-left">
 				<button class="btn btn-primary" data-toggle="collapse" data-target="#add-user"><strong> Thêm mới </strong><span class="caret"></span> </button>
 			</div>
-			<form class="container-fixed collapse text-left" id="add-user">
-				<div class="row">
-					<div class="col-xs-8">
-						<div class="panel panel-default">
-							<div class="panel-heading">
-								<strong class="text-info"> Information </strong>
-							</div>
-							<div class="panel-body">
-								<?php
-								Misc::create_Alert("alert-warning alert-hide", "", "new-user-error");
-								Misc::show_Alert();
-								?>
-								<div class="input-group form-group">
+			<form class="collapse text-left" id="add-user">
+				<div style="display: inline-block">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<strong class="text-info"> Information </strong>
+						</div>
+						<div class="panel-body">
+							<?php
+							Misc::create_Alert("alert-warning alert-hide", "", "new-user-error");
+							Misc::show_Alert();
+							?>
+							<div class="form-inline form-group">
+								<div class="input-group">
 									<div class="input-group-addon"> <div class="text-120"> Tên tài khoản </div> </div>
 									<input type="text" class="form-control" placeholder="Tên tài khoản" name="user"/>
 								</div>
+							</div>
+							<div class="form-inline">
 								<div class="input-group">
 									<div class="input-group-addon"> <div class="text-120"> Tên độc giả </div> </div>
 									<input type="text" class="form-control" placeholder="Họ & tên độc giả" name="name"/>
 								</div>
 							</div>
-							<div class="panel-footer text-center">
-								<button type="submit" class="btn btn-primary" name="action" value="add-new-user"> SAVE <span class="glyphicon glyphicon-check"></span> </button>
-							</div>
+						</div>
+						<div class="panel-footer text-center">
+							<button type="submit" class="btn btn-primary" name="action" value="add-new-user"><strong><span class="glyphicon glyphicon-check"></span> SAVE </strong></button>
 						</div>
 					</div>
 				</div>

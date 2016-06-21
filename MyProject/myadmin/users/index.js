@@ -88,9 +88,10 @@ $(document).ready(function(){
 				data: {action: "add-new-user", user: user_info}
 			}).done(function(){
 				alert("Thêm tài khoản mới thành công");
+				table.reLoad();
+				show_UpdateSuccess($(document).find('#table-users tr:has([value="' + user_info.user + '"]) td:eq(0)'));
 			});
 			this.reset();
-			table.reLoad();
 		}
 		return false;
 	});

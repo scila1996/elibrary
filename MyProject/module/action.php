@@ -24,7 +24,7 @@ if (isset($_POST["action"]))
 				else
 				{
 					$_SESSION["user"] = $result;
-					header("Location:/myuser");
+					header("Location:/home");
 				}
 			}
 			else
@@ -131,14 +131,6 @@ if (isset($_POST["action"]))
 		{
 			$_SESSION["admin"]->delete_User($_POST["user"]);
 			exit("");
-		}
-		case 'user-password':
-		{
-			exit(json_encode($_SESSION["user"]->get_Password() == sha1($_POST["oldpass"])));
-		}
-		case 'is-user-login':
-		{
-			exit(json_encode(isset($_SESSION["user"])));
 		}
 		case 'find-book-by-id':
 		{

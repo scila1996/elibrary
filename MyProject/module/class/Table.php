@@ -131,7 +131,7 @@ abstract class Table
 				<?php
 			}
 			?>
-			<li><a href="?page=<?php echo $this->jump_page ?>" class="page"><strong><span class="glyphicon glyphicon-refresh"></span></strong></a></li>
+			<li><a href="?page=<?php echo $this->jump_page ?>" title="Refresh" class="page"><strong><span class="glyphicon glyphicon-refresh"></span></strong></a></li>
 			<li><a> <?php echo "$this->jump_page / $pagemax" ?> </a></li>
 		</ul>
 		<?php

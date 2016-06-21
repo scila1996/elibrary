@@ -16,8 +16,13 @@
 		</div>
 	</div>
 </div>
-<div class="on-top hide">
-	<button type="button" class="btn btn-success"><span class="glyphicon glyphicon-chevron-up"></span></button>
+<div class="scroll-to hide">
+	<div>
+		<button type="button" class="btn btn-success" value="top"><span class="glyphicon glyphicon-chevron-up"></span></button>
+	</div>
+	<div>
+		<button type="button" class="btn btn-success" value="bottom"><span class="glyphicon glyphicon-chevron-down"></span></button>
+	</div>
 </div>
 <div class="hide"><span class="glyphicon glyphicon-ok text-success update-success"></span></div>
 <script src="/framework/my/js/my-js.js"></script>

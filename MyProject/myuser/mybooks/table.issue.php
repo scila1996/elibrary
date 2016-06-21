@@ -29,7 +29,7 @@ if (isset($_POST["table"]))
 			);
 			?>
 			<tr>
-				<td> <?php echo $order ?> </td>
+				<td style="font-weight: bold"> <?php echo $order ?> </td>
 				<td> <?php echo $issue["code"] ?> </td>
 				<td> <?php echo $issue["dateissue"] ?> </td>
 				<td> <?php echo $issue["quantity"] ?> </td>
