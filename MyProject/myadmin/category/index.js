@@ -12,14 +12,14 @@ $(document).ready(function(){
 		return $('#table-category').find('tr:has([value="' + id + '"]) td:eq(0)');
 	}
 	$(document).on('click', '.edit-category', function(){
-		var f_edit = $('#edit-category');
+		var f_edit = $('.modal:has(#edit-category)');
 		f_edit.modal('show');
 		f_edit.find('button[type="submit"]').val($(this).val());
 		row_selected = $(this).parents('tr');
 	});
-	$(document).on('shown.bs.modal', '#edit-category', function(){
-		this.reset();
+	$(document).on('shown.bs.modal', '.modal:has(#edit-category)', function(){
 		$(this).find('input').focus();
+		$(this).find('form').get(0).reset();
 	});
 	$(document).on('shown.bs.collapse', '#add-category', function(){
 		this.reset();
@@ -29,7 +29,7 @@ $(document).ready(function(){
 	$(document).on('submit', '#edit-category', function(){
 		var id = $(this).find('button[type="submit"]').val();
 		var name = $(this).find('input[type="text"]').val();
-		var err = $(this).find('button[type="submit"]').next();
+		var err = $(this).next();
 		err.empty();
 		if (!/\S/.test(name))
 		{
@@ -44,10 +44,9 @@ $(document).ready(function(){
 				async: false,
 				data: {action: "modify-category" , id: id, name: name},
 			}).done(function(){
-				alert("Cập nhật danh mục thành công");
 				table.reLoad();
 			});
-			$(this).modal('hide');
+			$(this).parents('.modal').modal('hide');
 			show_UpdateSuccess(find_Td(id));
 		}
 		return false;
@@ -63,7 +62,6 @@ $(document).ready(function(){
 				async: false,
 				data: {action: "remove-category", id: id}
 			}).done(function(){
-				alert("Đã xóa thành công");
 				table.reLoad();
 			});
 		}

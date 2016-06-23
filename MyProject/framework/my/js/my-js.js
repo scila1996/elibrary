@@ -78,7 +78,9 @@ function show_UpdateSuccess(item, time)
 	}
 	var update_icon = $(document).find('.update-success').clone();
 	item.append(update_icon);
+	update_icon.tooltip('show');
 	setTimeout(function(){
+		update_icon.tooltip('hide');
 		update_icon.remove();
 	}, time);
 }

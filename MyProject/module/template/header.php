@@ -38,18 +38,17 @@
 				?>
 				<ul class="nav navbar-nav" style="margin-left: -15px">
 					<li class="<?php if (isset($homepage_active)) echo "active" ?>"><a href="/home"> <span class="glyphicon glyphicon-home"></span> View </a></li>
-					<li><a class="dropdown-toggle" data-toggle="dropdown" href="javascript:void(0)"> <span class="glyphicon glyphicon-cog"></span> Manage <span class="caret"></span></a>
+					<li class="<?php if (isset($admin_man)) echo "active" ?>"><a class="dropdown-toggle" data-toggle="dropdown" href="javascript:void(0)"> <span class="glyphicon glyphicon-cog"></span> Manage <span class="caret"></span></a>
 						<ul class="dropdown-menu nav nav-pills nav-stacked" style="margin-top: 5px; padding: 5px">
 							<li><a href="/myadmin/chpwd" class="<?php if (isset($admin_password)) echo $active ?>"><span class="text-info"><span class="glyphicon glyphicon-lock"></span> Đổi mật khẩu </span></a></li>
-							<li><a href="/myadmin/users" class="<?php if (isset($admin_manuser)) echo $active ?>"><span class="text-info"><span class="glyphicon glyphicon-user"></span> Q.Lý tài khoản độc giả </span></a></li>
-							<li><a href="/myadmin/category" class="<?php if (isset($admin_category)) echo $active ?>"><span class="text-info"><span class="glyphicon glyphicon-list"></span> Q.Lý danh mục </span></a></li>
-							<li><a href="/myadmin/book" class="<?php if (isset($admin_book)) echo $active ?>"><span class="text-info"><span class="glyphicon glyphicon-book"></span> Q.Lý kho sách </span></a></li>
+							<li><a href="/myadmin/users" class="<?php if (isset($admin_manuser)) echo $active ?>"><span class="text-info"><span class="glyphicon glyphicon-user"></span> Quản lý tài khoản độc giả </span></a></li>
+							<li><a href="/myadmin/category" class="<?php if (isset($admin_category)) echo $active ?>"><span class="text-info"><span class="glyphicon glyphicon-list"></span> Quản lý danh mục sách </span></a></li>
+							<li><a href="/myadmin/book" class="<?php if (isset($admin_book)) echo $active ?>"><span class="text-info"><span class="glyphicon glyphicon-book"></span> Quản lý sách </span></a></li>
 							<li><a href="/myadmin/issue-add" class="<?php if (isset($admin_issue_add)) echo $active ?>"><span class="text-info"><span class="glyphicon glyphicon-shopping-cart"></span> Độc giả mượn sách </span></a></li>		
-							<li><a href="/myadmin/issue" class="<?php if (isset($admin_issue)) echo $active ?>"><span class="text-info"><span class="glyphicon glyphicon-list-alt"></span> Q.Lý mượn sách </span></a></li>
+							<li><a href="/myadmin/issue" class="<?php if (isset($admin_issue)) echo $active ?>"><span class="text-info"><span class="glyphicon glyphicon-list-alt"></span> Quản lý mượn sách </span></a></li>
 							<li><a href="/myadmin/config" class="<?php if (isset($config)) echo $active ?>"><span class="text-info"><span class="glyphicon glyphicon-cog"></span> Thiết lập </span></a></li>
 						</ul>
 					</li>
-					<li><a href="/module/action.php?action=logout"> <span class="glyphicon glyphicon-log-out"></span> Logout </a></li>
 				</ul>
 				<?php
 			}

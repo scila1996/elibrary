@@ -127,11 +127,6 @@ body
 	text-align: left;
 }
 
-.table
-{
-	word-wrap: break-word;
-}
-
 ul.ui-autocomplete {
   z-index:1500;!important
 }

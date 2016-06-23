@@ -8,7 +8,7 @@ if (!isset($_SESSION["admin"]))
 	die("");
 }
 
-$login_active = TRUE;
+$admin_man = TRUE;
 $config = TRUE;
 
 $info = (object)array();

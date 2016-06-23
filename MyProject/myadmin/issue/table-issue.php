@@ -29,6 +29,11 @@ if (isset($_POST["table"]))
 				"Chưa trả",
 				"Quá hạn trả"
 			);
+			$t_type = array(
+				"text-success",
+				"text-warning",
+				"text-danger"					
+			);
 			?>
 			<tr>
 				<td style="font-weight: bold"> <?php echo $order ?> </td>
@@ -37,7 +42,7 @@ if (isset($_POST["table"]))
 				<td> <?php echo $issue["name"] ?> </td>
 				<td> <?php echo $issue["dateissue"] ?> </td>
 				<td> <?php echo $issue["quantity"] ?> </td>
-				<td <?php if ($issue["state"] == 2) { ?> style="color: red" <?php } ?>> <?php echo $state[$issue["state"]] ?> </td>
+				<td style="font-weight: bold" class="<?php echo $t_type[$issue["state"]] ?>"> <?php echo $state[$issue["state"]] ?> </td>
 				<td> <?php echo $issue["datesubmit"] ?> </td>
 				<td class="text-right">
 					<button class="btn btn-primary select-issue" value="<?php echo $issue["id"]?>"><span class="glyphicon glyphicon-check"></span></button>

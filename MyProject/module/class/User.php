@@ -119,7 +119,17 @@ class Admin extends Account
 		VALUES ('$id', '$categoryid', CURDATE(), '$title', '$code', '$author', '$price', '$pubhouse', '$pubyear', '$description', '$amount', '$page')
 		";
 		$connect->query($query);
-		$ret_val = $connect->error;
+		$ret_val = array();
+		if ($connect->error)
+		{
+			$ret_val["error"] = true;
+			$ret_val["res"] = $connect->error; 
+		}
+		else
+		{
+			$ret_val["error"] = false;
+			$ret_val["res"] = $id;
+		}
 		$connect->close();
 		return $ret_val;
 	}
@@ -159,8 +169,8 @@ class Admin extends Account
 		$connect = Sql::open_MySQL();
 		$user = $user_info["user"];
 		$name = $user_info["name"];
-		$pass = "123456";
-		$connect->query("INSERT INTO users(user, pass, name, state) VALUES('$user', SHA1('$pass'), '$name', '1')");
+		$pass = "123456"; // Default Password
+		$connect->query("INSERT INTO users(user, pass, name) VALUES('$user', SHA1('$pass'), '$name')");
 		$connect->close();
 	}
 	public function update_UserPW($user, $pass)

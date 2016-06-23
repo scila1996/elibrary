@@ -75,7 +75,7 @@ if (isset($_POST["action"]))
 		}
 		case 'add-book':
 		{
-			exit($_SESSION["admin"]->add_Book($_POST["book"]));
+			exit(json_encode($_SESSION["admin"]->add_Book($_POST["book"])));
 		}
 		case 'get-book-info':
 		{

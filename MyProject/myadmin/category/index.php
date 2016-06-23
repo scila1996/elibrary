@@ -8,7 +8,7 @@ if (!isset($_SESSION["admin"]))
 	die("");
 }
 
-$login_active = TRUE;
+$admin_man = TRUE;
 $admin_category = TRUE;
 
 ?>
@@ -44,26 +44,28 @@ $admin_category = TRUE;
 			<div id="table-category">
 			</div>
 			<!--  Edit Category -->
-			<form class="modal" id="edit-category">
+			<div class="modal">
 				<div class="modal-dialog">
 					<div class="modal-content">
 						<div class="modal-header">
 							<button type="button" class="close" data-dismiss="modal">&times;</button>
-							<h4 class="modal-title"> Edit Category </h4>
+							<h4 class="modal-title"> Đổi tên danh mục </h4>
 						</div>
 						<div class="modal-body">
-							<div class="form-inline">
-								<div class="input-group">
-									<div class="input-group-addon"><span class="text-default"> Category name </span></div>
-									<input type="text" class="form-control" />
+							<form id="edit-category">
+								<div class="form-inline">
+									<div class="input-group">
+										<div class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></div>
+										<input type="text" class="form-control" placeholder="Nhập tên mới" />
+										<div class="input-group-btn"><button type="submit" class="btn btn-primary" value=""><strong><span class="glyphicon glyphicon-check"></span> Save </strong></button></div>
+									</div>
 								</div>
-								<button type="submit" class="btn btn-primary" value=""><strong><span class="glyphicon glyphicon-check"></span> Save </strong></button>
-								<div></div>
-							</div>
+							</form>
+							<div></div>
 						</div>
 					</div>
 				</div>
-			</form>
+			</div>
 		</div>
 		<?php include $_SERVER["DOCUMENT_ROOT"] . "/module/template/footer.php" ?>
 	</body>

@@ -9,7 +9,7 @@ if (!isset($_SESSION["admin"]))
 }
 
 $login_active = TRUE;
-$admin_info = TRUE;
+
 
 ?>
 <!DOCTYPE HTML>
@@ -39,7 +39,7 @@ $admin_info = TRUE;
 			?>
 			<p><strong> Thời gian hoạt động </strong> : "<span time-current="<?php echo $cur ?>" time-active="<?php echo $log ?>"> Loading ... </span>" </p>
 			<hr />
-			<a href="/module/action.php?action=logout" class="btn btn-primary"><strong> Sign Out <span class="glyphicon glyphicon-refresh"></span></strong></a>
+			<a href="/module/action.php?action=logout" class="btn btn-primary"><strong><span class="glyphicon glyphicon-log-out"></span> Sign Out </strong></a>
 		</h4>
 		<?php include $_SERVER["DOCUMENT_ROOT"] . "/module/template/footer.php" ?>
 	</body>

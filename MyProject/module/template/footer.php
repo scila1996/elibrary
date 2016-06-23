@@ -24,5 +24,5 @@
 		<button type="button" class="btn btn-success" value="bottom"><span class="glyphicon glyphicon-chevron-down"></span></button>
 	</div>
 </div>
-<div class="hide"><span class="glyphicon glyphicon-ok text-success update-success"></span></div>
+<div class="hide"><span class="glyphicon glyphicon-ok text-success update-success" title="Đã cập nhật thành công"></span></div>
 <script src="/framework/my/js/my-js.js"></script>

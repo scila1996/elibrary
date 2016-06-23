@@ -75,10 +75,11 @@ $(document).ready(function(){
 			$.ajax({
 				type: "POST",
 				url: "/module/action.php",
+				async: false,
 				data: {action: "add-book", book: book},
-				async: false
+				dataType: "json"
 			}).done(function(result){
-				if (!result)
+				if (!result.error)
 				{
 					f.reset();
 					$(f).modal('hide');
@@ -86,10 +87,11 @@ $(document).ready(function(){
 					keyw.find('input').val(book.code);
 					keyw.submit();
 					alert("Thêm sách mới thành công : " + book.title);
+					show_UpdateSuccess($(document).find('#table-show tr:has([value="' + result.res + '"]) td:eq(0)'));
 				}
 				else
 				{
-					alert("Mã sách bị trùng, hãy kiểm tra lại \n" + result);
+					alert("Mã sách bị trùng, hãy kiểm tra lại \n" + result.res);
 				}
 			});
 		}
@@ -110,7 +112,6 @@ $(document).ready(function(){
 				success: function()
 				{
 					table.reLoad();
-					alert("Đã xóa thành công");
 				}
 			});
 		}
@@ -152,9 +153,9 @@ $(document).ready(function(){
 		}).done(function(result){
 			if (result)
 			{
-				alert("Cập nhật thông tin sách thành công");
 				f.modal('hide');
 				table.reLoad();
+				show_UpdateSuccess($(document).find('#table-show tr:has([value="' + book.id + '"]) td:eq(0)'));
 			}
 			else
 			{

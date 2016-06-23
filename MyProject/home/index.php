@@ -15,17 +15,30 @@ $homepage_active = TRUE;
 		<?php
 		include $_SERVER["DOCUMENT_ROOT"] . "/module/template/header.php";
 		?>
-		<div class="form-inline text-left form-group">
-			<form class="input-group" id="select-category">
-				<div class="input-group-addon"><div class="text-default"> Chọn danh mục </div></div>
-				<select class="form-control">
-				</select>
-			</form>
-			<form id="search-with-keyword" class="form-group pull-right">
-				<div class="container-fixed"></div>
-				<input type="text" class="form-control" placeholder="Nhập từ khóa để tìm kiếm"/>
-				<button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
-			</form>
+		<div class="container-fixed">
+			<div class="row">
+				<div class="col-sm-6">
+					<div class="pull-left">
+						<div class="form-inline form-group">
+							<form class="input-group" id="select-category">
+								<div class="input-group-addon"><div class="text-default"> Chọn danh mục </div></div>
+								<select class="form-control">
+								</select>
+							</form>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-6">
+					<div class="pull-right">
+						<div class="form-inline form-group">
+							<form id="search-with-keyword" class="input-group">
+								<input type="text" class="form-control" placeholder="Nhập từ khóa để tìm kiếm"/>
+								<div class="input-group-btn"><button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button></div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 		<div id="table-book" class="text-left">
 		</div>

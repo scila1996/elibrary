@@ -8,7 +8,7 @@ if (!isset($_SESSION["admin"]))
 	die("");
 }
 
-$login_active = TRUE;
+$admin_man = TRUE;
 $admin_manuser = TRUE;
 
 $_SESSION["admin"]->select_User = "";
@@ -29,8 +29,10 @@ $_SESSION["admin"]->select_User = "";
 		?>
 		<div class="text-left">
 			<form class="form-inline form-group" id="search-user">
-				<input type="text" class="form-control" placeholder="Tìm độc giả"/>
-				<button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
+				<div class="input-group">
+					<input type="text" class="form-control" placeholder="Tìm độc giả"/>
+					<div class="input-group-btn"><button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button></div>
+				</div>
 			</form>
 			<div class="form-inline form-group text-left">
 				<button class="btn btn-primary" data-toggle="collapse" data-target="#add-user"><strong> Thêm mới </strong><span class="caret"></span> </button>
@@ -50,12 +52,14 @@ $_SESSION["admin"]->select_User = "";
 								<div class="input-group">
 									<div class="input-group-addon"> <div class="text-120"> Tên tài khoản </div> </div>
 									<input type="text" class="form-control" placeholder="Tên tài khoản" name="user"/>
+									<div class="input-group-addon"> <span class="glyphicon glyphicon-lock"></span> </div>
 								</div>
 							</div>
 							<div class="form-inline">
 								<div class="input-group">
 									<div class="input-group-addon"> <div class="text-120"> Tên độc giả </div> </div>
 									<input type="text" class="form-control" placeholder="Họ & tên độc giả" name="name"/>
+									<div class="input-group-addon"> <span class="glyphicon glyphicon-user"></span> </div>
 								</div>
 							</div>
 						</div>

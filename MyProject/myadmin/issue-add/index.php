@@ -8,7 +8,7 @@ if (!isset($_SESSION["admin"]))
 	die("");
 }
 
-$login_active = TRUE;
+$admin_man = TRUE;
 $admin_issue_add = TRUE;
 
 ?>
@@ -27,16 +27,14 @@ $admin_issue_add = TRUE;
 			Misc::create_Alert("alert-success alert-hide", "", "issue-success");
 			Misc::show_Alert();
 			?>
-			<div class="form-inline form-group">
-				<form id="check-user-for-issue">
-					<div class="input-group">
-						<span class="input-group-addon"><span class="text-default"> User</span></span>
-						<input class="form-control" type="text" />
-					</div>
-					<button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-ok"></span></button>
-				</form>
-				<div></div>
-			</div>
+			<form id="check-user-for-issue" class="form-inline form-group">
+				<div class="input-group">
+					<div class="input-group-addon"><span class="text-default"> User</span></div>
+					<input class="form-control" type="text" />
+					<div class="input-group-btn"><button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-ok"></span></button></div>
+				</div>
+			</form>
+			<div></div>
 			<div id="issue-book-for-user">
 				<hr />
 				<form id="issue-book">
@@ -64,14 +62,28 @@ $admin_issue_add = TRUE;
 						</div>
 					</div>
 				</div>
-				<form class="form-inline form-group" id="search-books">
-					<div class="input-group">
-						<div class="input-group-addon"><span class="text-default"> Danh mục </span></div>
-						<select class="form-control select-category"></select>
-					</div>
-					<div class="form-group pull-right">
-						<input type="text" class="form-control" placeholder="Tìm sách" />
-						<button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
+				<form class="container-fixed" id="search-books">
+					<div class="row">
+						<div class="col-xs-6">
+							<div class="pull-left">
+								<div class="form-inline form-group">
+									<div class="input-group">
+										<div class="input-group-addon"><span class="text-default"> Danh mục </span></div>
+										<select class="form-control select-category"></select>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-xs-6">
+							<div class="pull-right">
+								<div class="form-inline form-group">
+									<div class="input-group">
+										<input type="text" class="form-control" placeholder="Tìm sách" />
+										<div class="input-group-btn"><button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button></div>
+									</div>
+								</div>
+							</div>
+						</div>
 					</div>
 				</form>
 				<div id="table-book">

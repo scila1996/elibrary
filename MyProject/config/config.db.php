@@ -1,8 +1,8 @@
 <?php
 
-$host = $_SERVER["SERVER_NAME"];
+$host = "localhost";
 $user = "root";
-$pass = "Trunghust250996";
+$pass = "";
 $dbname = "elibrary";
 
 ?>

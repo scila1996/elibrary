@@ -8,7 +8,7 @@ if (!isset($_SESSION["admin"]))
 	die("");
 }
 
-$login_active = TRUE;
+$admin_man = TRUE;
 $admin_issue = TRUE;
 
 ?>
@@ -23,20 +23,32 @@ $admin_issue = TRUE;
 		include $_SERVER["DOCUMENT_ROOT"] . "/module/template/header.php";
 		?>
 		<div class="text-left">
-			<div class="form-inline form-group">
-				<form id="search-user" style="display: inline">
-					<div class="input-group">
-						<span class="input-group-addon"><span class="text-default"> Tên TK - Mã mượn </span></span>
-						<input class="form-control" type="text" />
+			<div class="container-fixed">
+				<div class="row">
+					<div class="col-xs-12">
+						<div class="pull-left">
+							<div class="form-inline form-group">
+								<form id="search-user">
+									<div class="input-group">
+										<span class="input-group-addon"><span class="text-default"> Tên TK - Mã mượn </span></span>
+										<input class="form-control" type="text" />
+										<div class="input-group-btn"><button type="submit" class="btn btn-primary" title="Tìm kiếm độc giả"><span class="glyphicon glyphicon-search"></span></button></div>
+									</div>
+								</form>
+							</div>
+						</div>
+						<div class="pull-right">
+							<div class="form-inline form-group">
+								<select class="form-control" name="select-state">
+									<option value=""> Tất cả </option>
+									<option value="0"> Đã trả hết </option>
+									<option value="1"> Chưa trả </option>
+									<option value="2"> Quá hạn trả </option>
+								</select>
+							</div>
+						</div>
 					</div>
-					<button type="submit" class="btn btn-primary" title="Tìm kiếm độc giả"><span class="glyphicon glyphicon-search"></span></button>
-				</form>
-				<select class="form-control pull-right" name="select-state">
-					<option value=""> Tất cả </option>
-					<option value="0"> Đã trả hết </option>
-					<option value="1"> Chưa trả </option>
-					<option value="2"> Quá hạn trả </option>
-				</select>
+				</div>
 			</div>
 			<div id="table-issue">
 			</div>

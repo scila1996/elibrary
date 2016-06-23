@@ -8,7 +8,7 @@ if (!isset($_SESSION["admin"]))
 	die("");
 }
 
-$login_active = TRUE;
+$admin_man = TRUE;
 $admin_book = TRUE;
 
 ?>
@@ -23,24 +23,34 @@ $admin_book = TRUE;
 		include $_SERVER["DOCUMENT_ROOT"] . "/module/template/header.php";
 		?>
 		<!-- Content -->
-		<div class="container-fixed text-left">
-			<!-- ALERT -->
-			<?php
-			?>
-			<!-- Form SELECT Category -->
-			<div class="form-inline form-group">
-				<div class="input-group">
-					<div class="input-group-addon"><span class="text-80"> Chọn </span></div>
-					<select class="form-control" id="select-category">
-					</select>
+		<div class="text-left">
+			<div class="container-fixed">
+				<div class="row">
+					<!-- Form SELECT Category -->
+					<div class="col-sm-6">
+						<div class="pull-left">
+							<div class="form-inline form-group">
+								<div class="input-group">
+									<div class="input-group-addon"><span class="text-80"> Chọn </span></div>
+									<select class="form-control" id="select-category">
+									</select>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- Search Book -->
+					<div class="col-sm-6">
+						<div class="pull-right">
+							<form class="form-inline form-group" id="keyword">
+								<div class="input-group">
+									<input type="text" class="form-control" placeholder="Nhập từ khóa để tìm kiếm"/>
+									<div class="input-group-btn"><button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button></div>
+								</div>
+							</form>
+						</div>
+					</div>
 				</div>
-				<!-- Search Book -->
-				<form class="pull-right" id="keyword">
-					<input type="text" class="form-control" placeholder="Nhập từ khóa để tìm kiếm"/>
-					<button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
-				</form>
 			</div>
-			<hr />
 			<!-- Add book -->
 			<div class="form-inline form-group">
 				<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#add-book" title="Thêm sách mới"><strong> Thêm sách </strong></button>

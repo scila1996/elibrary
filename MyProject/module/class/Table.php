@@ -57,7 +57,7 @@ abstract class Table
 						if ($val * $this->jump_page <= $num)
 						{
 							?>
-							<option value="<?php echo $val ?>" <?php if ($val == $this->pagesize) echo "selected" ?>> <?php echo $val ?> </option>
+							<option value="<?php echo $val ?>" <?php if ($val <= $this->pagesize) echo "selected" ?>> <?php echo $val ?> </option>
 							<?php
 						}
 					}
