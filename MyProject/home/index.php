@@ -17,18 +17,18 @@ $homepage_active = TRUE;
 		?>
 		<div class="container-fixed">
 			<div class="row">
-				<div class="col-sm-6">
+				<div class="col-xs-6">
 					<div class="pull-left">
 						<div class="form-inline form-group">
 							<form class="input-group" id="select-category">
-								<div class="input-group-addon"><div class="text-default"> Chọn danh mục </div></div>
+								<div class="input-group-addon"><div class="text-default"> Danh mục </div></div>
 								<select class="form-control">
 								</select>
 							</form>
 						</div>
 					</div>
 				</div>
-				<div class="col-sm-6">
+				<div class="col-xs-6">
 					<div class="pull-right">
 						<div class="form-inline form-group">
 							<form id="search-with-keyword" class="input-group">

@@ -24,16 +24,30 @@ if (isset($_POST["table"]))
 		}
 		public function tr_td($order, $issue)
 		{
-			$state = array(
-				"Đã trả hết",
-				"Chưa trả",
-				"Quá hạn trả"
-			);
-			$t_type = array(
-				"text-success",
-				"text-warning",
-				"text-danger"					
-			);
+			$text = "";
+			if (!$issue["issuing"] && !$issue["lose"])
+			{
+				$text = '<div class="text-success"> Đã trả hết </div>';
+			}
+			else
+			{
+				if ($issue["overdate"] && $issue["issuing"])
+				{
+					$text .= '<div class="text-danger"> Quá hạn trả </div>';
+				}
+				if ($issue["submited"])
+				{
+					$text .= '<div class="text-success"> Đã trả ' . $issue["submited"] . ' cuốn </div>';
+				}
+				if ($issue["issuing"])
+				{
+					$text .= '<div class="text-warning"> Còn ' . $issue["issuing"] . ' cuốn chưa trả </div>';
+				}
+				if ($issue["lose"])
+				{
+					$text .= '<div class="text-danger"> Bị mất ' . $issue["lose"] . ' cuốn </div>';
+				}
+			}
 			?>
 			<tr>
 				<td style="font-weight: bold"> <?php echo $order ?> </td>
@@ -42,7 +56,7 @@ if (isset($_POST["table"]))
 				<td> <?php echo $issue["name"] ?> </td>
 				<td> <?php echo $issue["dateissue"] ?> </td>
 				<td> <?php echo $issue["quantity"] ?> </td>
-				<td style="font-weight: bold" class="<?php echo $t_type[$issue["state"]] ?>"> <?php echo $state[$issue["state"]] ?> </td>
+				<td style="font-weight: bold"> <?php echo $text ?> </td>
 				<td> <?php echo $issue["datesubmit"] ?> </td>
 				<td class="text-right">
 					<button class="btn btn-primary select-issue" value="<?php echo $issue["id"]?>"><span class="glyphicon glyphicon-check"></span></button>
@@ -53,28 +67,43 @@ if (isset($_POST["table"]))
 	}
 	$table = (object)($_POST["table"]);
 	$table->query = "
-	SELECT B.* FROM
+		SELECT A.* FROM
 		(
-			SELECT A.*,
-			IF (A.issuing = 0, 0,
-				IF (DATE(NOW()) < A.datesubmit, 1, 2)) AS 'state' FROM
-			(
-			SELECT CRC32(issues.id) AS 'code', issues.*, users.name, COUNT(issuedetails.bookid) AS 'quantity', COUNT(IF(issuedetails.state = 1, 1, NULL)) AS 'issuing' FROM issues
+			SELECT
+				CRC32(issues.id) AS 'code',
+				issues.*,
+				users.name,
+				COUNT(issuedetails.bookid) AS 'quantity',
+				COUNT(IF(issuedetails.state = 0, 1, NULL)) AS 'submited',
+				COUNT(IF(issuedetails.state = 1, 1, NULL)) AS 'issuing',
+				COUNT(IF(issuedetails.state = -1, 1, NULL)) AS 'lose',
+				DATE(NOW()) > issues.datesubmit AS 'overdate'
+			FROM issues
 			JOIN issuedetails ON issuedetails.issueid = issues.id
 			JOIN users ON users.user = issues.user
 			GROUP BY issues.id
-			) A
-		) B
-	WHERE 1
+		) A
+		WHERE 1
 	";
 	if (isset($_POST["data"]))
 	{
 		$keyword = $_POST["data"]["keyword"];
 		$state = $_POST["data"]["state"];
 		$table->query .= "
-			AND (B.user REGEXP '$keyword' OR B.name REGEXP '$keyword' OR B.code REGEXP '$keyword')
-			AND (B.state REGEXP '$state')
-		"; 
+			AND (A.user REGEXP '$keyword' OR A.name REGEXP '$keyword' OR A.code REGEXP '$keyword')
+		";
+		switch ($state)
+		{
+			case 1:
+				$table->query .= "AND (A.issuing = 0 AND A.lose = 0)";
+				break;
+			case 2:
+				$table->query .= "AND (A.issuing != 0 OR A.lose != 0)";
+				break;
+			case 3:
+				$table->query .= "AND (A.overdate = 1 AND issuing != 0)";
+				break;
+		}
 	}
 	$load = new Load($table);
 }

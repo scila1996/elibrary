@@ -164,11 +164,11 @@ if (isset($_POST["action"]))
 		{
 			exit(json_encode($_SESSION["admin"]->issue_Books($_POST["books"], $_POST["user"], $_POST["date"])));
 		}
-		case 'submit-book':
+		case 'issue-detail-state':
 		{
-			$_SESSION["admin"]->submit_Book($_POST["id"]);
+			$_SESSION["admin"]->set_IssueDetailState($_POST["id"], $_POST["state"]);
 			exit("");
-		}
+		} 
 		case 'submit-all-books':
 		{
 			$_SESSION["admin"]->submit_AllBooks($_POST["isid"]);
@@ -194,10 +194,10 @@ if (isset($_POST["action"]))
 				SELECT
 					users.user,
 					(issue_rule.total - COUNT(issuedetails.id)) AS 'avai',
-					issue_rule.total 'total'
+					issue_rule.total AS 'total'
 				FROM users
 				LEFT JOIN issues ON issues.user = users.user
-				LEFT JOIN issuedetails ON issues.id = issuedetails.issueid AND issuedetails.state = 1
+				LEFT JOIN issuedetails ON issues.id = issuedetails.issueid AND issuedetails.state != 0
 				LEFT JOIN issue_rule ON 1
 				WHERE users.user = '$_POST[user]'
 				GROUP BY users.user

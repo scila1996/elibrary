@@ -15,6 +15,12 @@ $lookup_active = TRUE;
 		<?php
 		include $_SERVER["DOCUMENT_ROOT"] . "/module/template/header.php";
 		?>
+		<style>
+			#search-adv select, #search-adv input
+			{
+				min-width: 250px;
+			}
+		</style>
 		<div class="text-left">
 			<div class="form-group">
 				<button type="button" class="btn btn-link" data-toggle="collapse" data-target="#search-adv" title="Click to show"><span class="glyphicon glyphicon-search"></span><strong> Tra cứu nâng cao </strong><span class="caret"></span></button>

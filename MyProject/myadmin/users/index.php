@@ -41,7 +41,7 @@ $_SESSION["admin"]->select_User = "";
 				<div style="display: inline-block">
 					<div class="panel panel-default">
 						<div class="panel-heading">
-							<strong class="text-info"> Information </strong>
+							<strong class="text-info"> Nhập thông tin </strong>
 						</div>
 						<div class="panel-body">
 							<?php
@@ -64,7 +64,7 @@ $_SESSION["admin"]->select_User = "";
 							</div>
 						</div>
 						<div class="panel-footer text-center">
-							<button type="submit" class="btn btn-primary" name="action" value="add-new-user"><strong><span class="glyphicon glyphicon-check"></span> SAVE </strong></button>
+							<button type="submit" class="btn btn-primary" name="action" value="add-new-user"><strong><span class="glyphicon glyphicon-check"></span> Thêm mới </strong></button>
 						</div>
 					</div>
 				</div>

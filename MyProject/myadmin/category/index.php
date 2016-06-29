@@ -31,14 +31,14 @@ $admin_category = TRUE;
 				<form id="add-category" class="collapse">
 					<div class="form-inline">
 						<div class="input-group">
-							<div class="input-group-addon"><div class="text-80"> Add - Name </div></div>
+							<div class="input-group-addon"><span class="glyphicon glyphicon-plus"></span></div>
 							<input type="text" class="form-control" placeholder="Thêm danh mục"/>
+							<div class="input-group-btn"><button type="submit" class="btn btn-primary"><strong> Thêm </strong></button></div>
 						</div>
-						<button type="submit" class="btn btn-link" title="Thêm mới danh mục"> <span class="glyphicon glyphicon-plus"></span> Add </button>
 					</div>
-					<hr />
 				</form>
 				<div></div>
+				<hr />
 			</div>
 			<!-- Table Category -->
 			<div id="table-category">
@@ -57,7 +57,7 @@ $admin_category = TRUE;
 									<div class="input-group">
 										<div class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></div>
 										<input type="text" class="form-control" placeholder="Nhập tên mới" />
-										<div class="input-group-btn"><button type="submit" class="btn btn-primary" value=""><strong><span class="glyphicon glyphicon-check"></span> Save </strong></button></div>
+										<div class="input-group-btn"><button type="submit" class="btn btn-primary" value=""><strong><span class="glyphicon glyphicon-check"></span> Lưu </strong></button></div>
 									</div>
 								</div>
 							</form>

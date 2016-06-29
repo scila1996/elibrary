@@ -29,7 +29,7 @@ $admin_issue_add = TRUE;
 			?>
 			<form id="check-user-for-issue" class="form-inline form-group">
 				<div class="input-group">
-					<div class="input-group-addon"><span class="text-default"> User</span></div>
+					<div class="input-group-addon"><span class="text-default"> Tài khoản độc giả </span></div>
 					<input class="form-control" type="text" />
 					<div class="input-group-btn"><button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-ok"></span></button></div>
 				</div>
@@ -38,7 +38,7 @@ $admin_issue_add = TRUE;
 			<div id="issue-book-for-user">
 				<hr />
 				<form id="issue-book">
-					<button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-check"></span><strong> Issue Books </strong></button>
+					<button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-check"></span><strong> Xác nhận </strong></button>
 				</form>
 				<div class="form-group"></div>
 				<div class="modal fade" id="form-issue-book">

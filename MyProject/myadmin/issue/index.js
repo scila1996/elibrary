@@ -53,7 +53,19 @@ $(document).ready(function(){
 			type: "POST",
 			url: "/module/action.php",
 			async: false,
-			data: {action: "submit-book", id: issuedetail_id}
+			data: {action: "issue-detail-state", id: issuedetail_id, state: 0}
+		}).done(function(){
+			table_issue_detail.reLoad();
+		});
+	});
+	// Lose Book
+	$(document).on('click', '#table-issue-detail .select-lose', function(){
+		var issuedetail_id = $(this).val();
+		$.ajax({
+			type: "POST",
+			url: "/module/action.php",
+			async: false,
+			data: {action: "issue-detail-state", id: issuedetail_id, state: -1}
 		}).done(function(){
 			table_issue_detail.reLoad();
 		});

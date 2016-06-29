@@ -35,7 +35,7 @@ if (isset($_POST["table"]))
 	$table->query = "
 	SELECT books.*, categories.name AS 'categoryname', (books.amount - COUNT(issuedetails.id)) AS 'total' FROM books
 	LEFT JOIN categories ON categories.id = books.categoryid
-	LEFT JOIN issuedetails ON issuedetails.bookid = books.id AND issuedetails.state = 1
+	LEFT JOIN issuedetails ON issuedetails.bookid = books.id AND issuedetails.state != 0
 	WHERE 1
 	";
 	if (isset($_POST["data"]))

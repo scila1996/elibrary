@@ -46,7 +46,7 @@ if (isset($_POST["print"]))
 				while ($book = $result->fetch_array())
 				{
 					?>
-					<li> <?php echo $book["title"] ?> </li>
+					<li> <?php printf("%s - ISBN : %s - Giá : %s vnd", $book["title"], $book["code"], $book["price"]) ?> </li>
 					<?php
 					$total_price += $book["price"];
 				}

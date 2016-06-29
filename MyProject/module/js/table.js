@@ -26,7 +26,7 @@ function Table(url, data_post, output, func)
 	};
 	var scroll_onTable = function(){
 		$('body').animate({
-			scrollTop: $(output).offset().top
+			scrollTop: $(out).offset().top
 		});
 	};
 	$(document).off('click', output + ' .page');
@@ -42,6 +42,35 @@ function Table(url, data_post, output, func)
 		data.table.pagesize = size;
 		Load();
 		scroll_onTable();
+	});
+	$(document).off('keydown');
+	$(document).on('keydown', function(e){
+		var step = 0;
+		switch (e.which)
+		{
+			case 37:
+				step = -1;
+				break;
+			case 39:
+				step = 1;
+				break;
+		}
+		if (step)
+		{
+			var select = $(document).find(out + ' ' + '.pagination .active');
+			if (step == -1)
+			{
+				select = select.prev();
+			}
+			else
+			{
+				select = select.next();
+			}
+			if (select.length)
+			{
+				select.find('a.page').trigger('click');
+			}
+		}
 	});
 	this.reLoad = function(){
 		Load();

@@ -61,7 +61,7 @@ $(document).ready(function(){
 				if (result.avai == 0)
 				{
 					$('#issue-book-for-user').hide();
-					f.next().html(create_Comment("Người dùng này đã mượn tối đa " + result.total + " quyển sách", 'warning'));
+					f.next().html(create_Comment("Độc giả này đã mượn tối đa " + result.total + " quyển sách", 'warning'));
 				}
 				else
 				{
@@ -74,7 +74,7 @@ $(document).ready(function(){
 			else
 			{
 				$('#issue-book-for-user').hide();
-				f.next().html(create_Comment("Người dùng không tồn tại, hãy nhập lại !", 'danger'));
+				f.next().html(create_Comment("Độc giả không tồn tại, hãy nhập lại !", 'danger'));
 			}
 		});
 		remove_Selected();

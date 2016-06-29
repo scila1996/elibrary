@@ -217,10 +217,10 @@ class Admin extends Account
 		});
 		return $ret;
 	}
-	public function submit_Book($issuedetail_id)
+	public function set_IssueDetailState($issuedetail_id, $state)
 	{
 		$connect = Sql::open_MySQL();
-		$connect->query("UPDATE issuedetails SET state = 0 WHERE issuedetails.id = '$issuedetail_id'");
+		$connect->query("UPDATE issuedetails SET state = $state WHERE issuedetails.id = '$issuedetail_id'");
 		$connect->close();
 	}
 	public function submit_AllBooks($isid)

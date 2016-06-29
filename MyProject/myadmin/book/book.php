@@ -27,10 +27,10 @@ if (isset($_POST["table"]))
 					<div class="dropdown">
 						<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"> <span class="glyphicon glyphicon-cog"></span> <span class="caret"></span> </button>
 						<ul class="dropdown-menu pull-right">
-							<li><a href="javascript:void(0)" class="edit-book"><span class="glyphicon glyphicon-edit"></span> Edit </a></li>
-							<li><a href="javascript:void(0)" class="delete-book"><span class="glyphicon glyphicon-trash"></span> Delete </a></li>
+							<li><a href="javascript:void(0)" class="edit-book"><span class="glyphicon glyphicon-edit"></span> Sửa </a></li>
+							<li><a href="javascript:void(0)" class="delete-book"><span class="glyphicon glyphicon-trash"></span> Xóa </a></li>
 							<li class="divider"></li>
-							<li><a href="javascript:void(0)" class="select-book"><span class="glyphicon glyphicon-check"></span> Select </a></li>
+							<li><a href="javascript:void(0)" class="select-book"><span class="glyphicon glyphicon-check"></span> Chọn </a></li>
 						</ul>
 					</div>		
 				</td>

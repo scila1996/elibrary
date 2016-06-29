@@ -24,8 +24,8 @@ if (isset($_POST["table"]))
 				<td> <?php echo $category["name"] ?> </td>
 				<td> <?php echo $category["amount"] ?> </td>
 				<td class="text-right">
-					<button type="button" class="btn btn-link edit-category" value="<?php echo $category["id"] ?>"><span class="glyphicon glyphicon-edit"></span> Edit </button>
-					<button type="button" class="btn btn-link delete-category" value="<?php echo $category["id"] ?>"><span class="glyphicon glyphicon-trash"></span> Delete </button>
+					<button type="button" class="btn btn-link edit-category" value="<?php echo $category["id"] ?>"><span class="glyphicon glyphicon-edit"></span> Sửa </button>
+					<button type="button" class="btn btn-link delete-category" value="<?php echo $category["id"] ?>"><span class="glyphicon glyphicon-trash"></span> Xóa </button>
 				</td>
 			</tr>
 			<?php

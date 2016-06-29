@@ -88,11 +88,8 @@ $(document).ready(function(){
 				data: {action: "add-new-user", user: user_info}
 			}).done(function(){
 				_this.collapse('hide');
-				alert("Thêm tài khoản mới thành công");
-				//keyword = user_info.user;
-				//create_Table();
 				table.reLoad();
-				show_UpdateSuccess($(document).find('#table-users tr:has([value="' + user_info.user + '"]) td:eq(0)'));
+				show_UpdateSuccess($(document).find('#table-users tr:has([value="' + user_info.user + '"])'));
 			});
 			this.reset();
 		}

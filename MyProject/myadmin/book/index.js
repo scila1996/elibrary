@@ -87,7 +87,7 @@ $(document).ready(function(){
 					keyw.find('input').val(book.code);
 					keyw.submit();
 					alert("Thêm sách mới thành công : " + book.title);
-					show_UpdateSuccess($(document).find('#table-show tr:has([value="' + result.res + '"]) td:eq(0)'));
+					show_UpdateSuccess($(document).find('#table-show tr:has([value="' + result.res + '"])'));
 				}
 				else
 				{
@@ -155,7 +155,7 @@ $(document).ready(function(){
 			{
 				f.modal('hide');
 				table.reLoad();
-				show_UpdateSuccess($(document).find('#table-show tr:has([value="' + book.id + '"]) td:eq(0)'));
+				show_UpdateSuccess($(document).find('#table-show tr:has([value="' + book.id + '"])'));
 			}
 			else
 			{

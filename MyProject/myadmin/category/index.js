@@ -7,9 +7,9 @@ $(document).ready(function(){
 		table = new Table('/myadmin/category/table-category.php', null, '#table-category');
 	}
 	load_Table();
-	function find_Td(id)
+	function find_tr(id)
 	{
-		return $('#table-category').find('tr:has([value="' + id + '"]) td:eq(0)');
+		return $('#table-category').find('tr:has([value="' + id + '"])');
 	}
 	$(document).on('click', '.edit-category', function(){
 		var f_edit = $('.modal:has(#edit-category)');
@@ -24,6 +24,9 @@ $(document).ready(function(){
 	$(document).on('shown.bs.collapse', '#add-category', function(){
 		this.reset();
 		$(this).find('input').focus();
+	});
+	$(document).on('hide.bs.collapse', '#add-category', function(){
+		$(this).next().empty();
 	});
 	// Edit - Category
 	$(document).on('submit', '#edit-category', function(){
@@ -47,7 +50,7 @@ $(document).ready(function(){
 				table.reLoad();
 			});
 			$(this).parents('.modal').modal('hide');
-			show_UpdateSuccess(find_Td(id));
+			show_UpdateSuccess(find_tr(id));
 		}
 		return false;
 	});
@@ -86,7 +89,7 @@ $(document).ready(function(){
 				dataType: "json"
 			}).done(function(result){
 				load_Table();
-				show_UpdateSuccess(find_Td(result));
+				show_UpdateSuccess(find_tr(result));
 			});
 			this.reset();
 			$(this).collapse('hide');

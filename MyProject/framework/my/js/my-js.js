@@ -74,14 +74,17 @@ function show_UpdateSuccess(item, time)
 {
 	if (time === undefined)
 	{
-		time = 5000;
+		time = 10000;
 	}
+	item.addClass('success');
 	var update_icon = $(document).find('.update-success').clone();
-	item.append(update_icon);
-	update_icon.tooltip('show');
+	item.find('td:eq(0)').append(update_icon);
+	$('body').animate({
+		scrollTop: item.offset().top
+	});
 	setTimeout(function(){
-		update_icon.tooltip('hide');
 		update_icon.remove();
+		item.removeClass('success');
 	}, time);
 }
 

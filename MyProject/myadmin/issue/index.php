@@ -41,9 +41,9 @@ $admin_issue = TRUE;
 							<div class="form-inline form-group">
 								<select class="form-control" name="select-state">
 									<option value=""> Tất cả </option>
-									<option value="0"> Đã trả hết </option>
-									<option value="1"> Chưa trả </option>
-									<option value="2"> Quá hạn trả </option>
+									<option value="1"> Đã trả hết </option>
+									<option value="2"> Chưa trả </option>
+									<option value="3"> Quá hạn trả </option>
 								</select>
 							</div>
 						</div>
@@ -68,6 +68,15 @@ $admin_issue = TRUE;
 								<button type="button" class="btn btn-primary print-issue" value=""><span class="glyphicon glyphicon-print"></span> <strong> Print </strong></button>
 							</div>
 						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="modal fade" id="select-state">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-body">
+						dasdas
 					</div>
 				</div>
 			</div>

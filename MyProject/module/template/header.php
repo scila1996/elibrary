@@ -3,7 +3,13 @@
 	<div class="heading container-fixed">
 		<div class="row">
 			<div class="col-xs-6">
-				eLibrary : Design by scila1996
+				<a><span class="icon-facebook2"></span></a>
+				<a><span class="icon-skype"></span></a>
+				<a><span class="icon-rss2"></span></a>
+				<a><span class="icon-tumblr2"></span></a>
+				<a><span class="icon-skype"></span></a>
+				<a><span class="icon-chrome"></span></a>
+				<a><span class="icon-html-five"></span></a>
 			</div>
 			<div class="col-xs-6 text-right">
 				<?php
@@ -89,7 +95,7 @@
 					}
 					else
 					{
-						?> <a href="/login"><span class="glyphicon glyphicon-log-in"></span> Login </a> <?php
+						?> <a href="/login"><span class="glyphicon glyphicon-log-in"></span> Đăng nhập </a> <?php
 					}
 					?>
 				</li>

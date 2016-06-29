@@ -73,7 +73,7 @@ abstract class Table
 		$pagemax = ceil($num / $this->pagesize);
 		if (!$pagemax) $pagemax+=1;
 		?>
-		<ul class="pagination" style="font-weight: bold" id="page-pagination">
+		<ul class="pagination" style="font-weight: bold">
 			<?php
 			if ($this->jump_page == 1)
 			{

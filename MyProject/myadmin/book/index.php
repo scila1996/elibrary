@@ -27,7 +27,7 @@ $admin_book = TRUE;
 			<div class="container-fixed">
 				<div class="row">
 					<!-- Form SELECT Category -->
-					<div class="col-sm-6">
+					<div class="col-xs-6">
 						<div class="pull-left">
 							<div class="form-inline form-group">
 								<div class="input-group">
@@ -39,11 +39,11 @@ $admin_book = TRUE;
 						</div>
 					</div>
 					<!-- Search Book -->
-					<div class="col-sm-6">
+					<div class="col-xs-6">
 						<div class="pull-right">
 							<form class="form-inline form-group" id="keyword">
 								<div class="input-group">
-									<input type="text" class="form-control" placeholder="Nhập từ khóa để tìm kiếm"/>
+									<input type="text" class="form-control" placeholder="Tìm kiếm"/>
 									<div class="input-group-btn"><button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button></div>
 								</div>
 							</form>
@@ -103,7 +103,7 @@ $admin_book = TRUE;
 						</div>
 						<div class="modal-footer">
 							<div class="text-center">
-								<button type="submit" class="btn btn-primary"> SAVE <span class="glyphicon glyphicon-check"></span> </button>
+								<button type="submit" class="btn btn-primary"><strong> Cập nhật </strong><span class="glyphicon glyphicon-check"></span> </button>
 							</div>
 						</div>
 					</div>
