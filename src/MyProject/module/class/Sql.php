@@ -4,7 +4,7 @@ class Sql
 {
 	public static function open_MySQL()
 	{
-		include $_SERVER["DOCUMENT_ROOT"] . "\config\config.db.php";
+		include $_SERVER["DOCUMENT_ROOT"] . "/config/config.db.php";
 		$connectsql = new mysqli($host, $user, $pass, $dbname);
 		if ($connectsql->connect_error)
 		{
