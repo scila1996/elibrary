@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    $('[name="pass"]').focus();
+    $('[name="oldpass"]').focus();
     $('form').submit(function () {
         var pass = $('[name="pass"]').val();
         var repass = $('[name="repass"]').val();

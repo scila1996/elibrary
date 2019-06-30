@@ -41,18 +41,26 @@ $(document).ready(function () {
     // Reset Password
     $(document).on('click', '#table-users .reset-pwd', function () {
         var user = $(this).parents('tr').find('button').val();
-        if (confirm("Reset mật khẩu tài khoản \"" + user + "\" ?"))
-        {
-            $.ajax({
-                type: "POST",
-                url: "/module/action.php",
-                async: false,
-                data: {action: "user-chpwd", user: user, pass: "123456"}
-            }).done(function () {
-                alert("Reset mật khẩu hoàn tất");
-            });
-        }
+        var f_edit = $('.modal:has(#edit-user-pwd)');
+        f_edit.modal('show');
+        f_edit.find('button[type="submit"]').val(user);
     });
+
+    $(document).on('submit', 'form#edit-user-pwd', function () {
+        var user = $(this).find('button[name="user"]').val();
+        var pass = $(this).find('input[name="pass"]').val();
+        $.ajax({
+            type: "POST",
+            url: "/module/action.php",
+            async: false,
+            data: {action: "user-chpwd", user: user, pass: pass}
+        }).done(function () {
+            $('.modal:has(#edit-user-pwd)').modal('hide');
+            alert("Reset mật khẩu hoàn tất");
+        });
+        return false;
+    });
+
     // Add new user
     $(document).on('submit', '#add-user', function () {
         var _this = $(this);

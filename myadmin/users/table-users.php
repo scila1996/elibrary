@@ -30,8 +30,8 @@ if (isset($_POST["table"])) {
                     <div class="dropdown">
                         <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" value="<?php echo $user["user"] ?>"> <span class="glyphicon glyphicon-cog"></span> <span class="caret"></span> </button>
                         <ul class="dropdown-menu pull-right">
-                            <li><a href="javascript:void(0)" class="reset-pwd"><span class="text-info"><span class="glyphicon glyphicon-cog"></span> Mật khẩu mặc định </span></a></li>
-                            <li><a href="javascript:void(0)" class="remove-user"><span class="text-info"><span class="glyphicon glyphicon-remove"></span> Xóa tài khoản này </span></a></li>
+                            <li><a href="javascript:void(0)" class="reset-pwd"><span class="text-info"><span class="glyphicon glyphicon-cog"></span> Thay đổi mật khẩu </span></a></li>
+                            <li><a href="javascript:void(0)" class="remove-user"><span class="text-info"><span class="glyphicon glyphicon-remove"></span> Xóa tài khoản </span></a></li>
                         </ul>
                     </div>
                 </td>

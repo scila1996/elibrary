@@ -69,6 +69,30 @@ $_SESSION["admin"]->select_User = "";
                 </div>
                 <hr />
             </form>
+            <!--  Edit Password -->
+            <div class="modal">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title"> Đổi mật khẩu </h4>
+                        </div>
+                        <div class="modal-body">
+                            <form id="edit-user-pwd" method="post" action="/module/action.php">
+                                <div class="form-group form-inline">
+                                    <div class="input-group">
+                                        <div class="input-group-addon"><div class="text-120"> Mật khẩu mới </div></div>
+                                        <input type="password" class="form-control" placeholder="Nhập mật khẩu mới" name="pass"/>
+                                        <div class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></div>
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-primary" name="user" value="user-chpwd"><strong><span class="glyphicon glyphicon-check"></span> Lưu mật khẩu </strong></button>
+                            </form>
+                            <div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div id="table-users">
             </div>
         </div>

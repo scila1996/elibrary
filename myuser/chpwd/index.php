@@ -32,6 +32,13 @@ $user_password = TRUE;
                     ?>
                     <div class="form-inline form-group">
                         <div class="input-group">
+                            <div class="input-group-addon"><div class="text-120"> <strong> Mật khẩu cũ </strong></div></div>
+                            <input type="password" class="form-control" placeholder="Nhập mật khẩu cũ" name="oldpass"/>
+                            <div class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></div>
+                        </div>
+                    </div>
+                    <div class="form-inline form-group">
+                        <div class="input-group">
                             <div class="input-group-addon"><div class="text-120"> <strong> Mật khẩu mới </strong></div></div>
                             <input type="password" class="form-control" placeholder="Nhập mật khẩu mới" name="pass"/>
                             <div class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></div>
