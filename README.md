@@ -1,5 +1,3 @@
-**
-
 ## Phần mềm quản lý thư viện - eLibrary (Project 01)
 
 **Chức năng**
