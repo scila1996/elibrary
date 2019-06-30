@@ -1,0 +1,11 @@
+{
+    "name": "vendor/elibrary",
+    "description": "Phần mềm quản lý thư viện - eLibrary",
+    "authors": [
+        {
+            "name": "Nguyễn Trung",
+            "email": "trungnt.hust.96@gmail.com"
+        }
+    ],
+    "require": {}
+}
