@@ -1,0 +1,280 @@
+body, html
+{
+    margin: 0;
+    padding: 0;
+}
+
+.wrapper
+{
+    min-height: 100vh;
+    padding: 15px;
+    position: relative;
+    background: white;
+    border: 1px solid #ddd;
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6) !important;
+}
+
+@media (min-width: 1366px) {
+    .wrapper
+    {
+        width: 80%;
+        left: 10%;
+    }
+}
+
+@media (min-width: 1600px) {
+    .wrapper
+    {
+        width: 70%;
+        left: 15%;
+    }
+}
+
+@media print
+{
+    @page
+    {
+        margin: 0;
+        size: landscape;
+    }
+    .wrapper
+    {
+        display: none;
+    }
+    #print-order-issue-books
+    {
+        display: inline-block !important;
+    }
+}
+
+@font-face {
+    font-family: 'icomoon';
+    src:    url('fonts/icomoon.eot?ryla91');
+    src:    url('fonts/icomoon.eot?ryla91#iefix') format('embedded-opentype'),
+        url('fonts/icomoon.ttf?ryla91') format('truetype'),
+        url('fonts/icomoon.woff?ryla91') format('woff'),
+        url('fonts/icomoon.svg?ryla91#icomoon') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+    /* use !important to prevent issues with browser extensions that change fonts */
+    font-family: 'icomoon' !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    font-size: 20px;
+    margin-right: 10px;
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-connection:before {
+    content: "\e91b";
+}
+.icon-facebook2:before {
+    content: "\ea91";
+}
+.icon-rss2:before {
+    content: "\ea9c";
+}
+.icon-tumblr2:before {
+    content: "\eaba";
+}
+.icon-skype:before {
+    content: "\eac5";
+}
+.icon-chrome:before {
+    content: "\ead9";
+}
+.icon-html-five:before {
+    content: "\eae4";
+}
+
+.heading
+{
+    background-color: #337ab7;
+    border: 1px solid;
+    border-color: #ddd;
+    padding: 15px;
+    margin: -15px -15px 15px -15px;
+    font-weight: bold;
+    color: white;
+}
+
+.heading [class*="icon-"]
+{
+    color: #5cb85c;
+}
+
+.heading [class*="icon-"]:hover
+{
+    color: #449d44;
+}
+
+.heading a:hover
+{
+    text-decoration: none;
+}
+
+.img-banner
+{
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.no-padding
+{
+    padding: 0px !important;
+    margin: 0px !important;
+}
+
+.no-radius
+{
+    border-radius: 0px !important;
+}
+
+.content
+{
+    margin-bottom: 80px;
+}
+
+.footer
+{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: table;
+    width: 100%;
+    height: 60px;
+}
+
+.footer .footer-content
+{
+    display: table-cell;
+    vertical-align: middle;
+    padding-top: 25px;
+    padding-bottom: 25px;
+}
+
+.text-80
+{
+    width: 80px;
+}
+
+.text-100
+{
+    width: 100px;
+}
+
+.text-120
+{
+    width: 120px;
+}
+
+.text-80, .text-100, .text-120, .text-default
+{
+    font-weight: bold;
+    color: gray;
+    text-align: left;
+}
+
+ul.ui-autocomplete {
+    z-index:1500;!important
+}
+
+.dropdown-menu:before {
+    position: absolute;
+    top: -7px;
+    left: 9px;
+    display: inline-block;
+    border-right: 7px solid transparent;
+    border-bottom: 7px solid #ccc;
+    border-left: 7px solid transparent;
+    border-bottom-color: rgba(0, 0, 0, 0.2);
+}
+
+.dropdown-menu:after {
+    position: absolute;
+    top: -6px;
+    left: 10px;
+    display: inline-block;
+    border-right: 6px solid transparent;
+    border-bottom: 6px solid #ffffff;
+    border-left: 6px solid transparent;
+}
+
+.modal-body {
+    max-height: calc(100vh - 200px);
+    overflow-y: auto;
+}
+
+button:focus
+{
+    outline: 0 !important;
+}
+
+.scroll-to
+{
+    position: fixed;
+    right: 5vw;
+    bottom: 10vh;
+    z-index: 1000;
+}
+
+.scroll-to div:first-child button
+{
+    margin-bottom: 8px;
+}
+
+.scroll-to button
+{
+    height: 50px;
+    width: 50px;
+}
+
+.wrapper-login
+{
+    padding-top: 25px;
+    width: 100vw;
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.login-body
+{
+    display: inline-block !important;
+    padding: 35px 15px 15px 15px !important;
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6) !important;
+}
+
+.login-body .login-heading
+{
+    padding: 0px;
+    position: absolute;
+    top: 5px;
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6);
+}
+
+#show-loading-gif
+{
+    text-align: center;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+
+#show-loading-gif .modal-dialog
+{
+    width: auto;
+    display: inline-block;
+}
