@@ -52,8 +52,8 @@ $admin_issue_add = TRUE;
                                 <div style="display: inline">
                                     <div class="pull-left"></div>
                                     <form id="issue-book-process" class="pull-right">
-                                        <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-check"></span> Issue </button>
-                                        <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Close </button>
+                                        <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-check"></span> Xác nhận </button>
+                                        <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Hủy bỏ </button>
                                     </form>
                                 </div>
                             </div>

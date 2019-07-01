@@ -10,18 +10,24 @@ if (isset($_POST["table"])) {
             <tr class="active">
                 <th> <input type="checkbox" class="select-all"/> </th>
                 <th> # </th>
-                <th> Books </th>
-                <th class="text-right"><button type="button" class="btn btn-link" name="action" value="delete-books"> Trash <span class="glyphicon glyphicon-trash"></span></button></th>
+                <th> Mã sách </th>
+                <th> Tên sách </th>
+                <th> Số sách </th>
+                <th> Còn lại </th>
+                <th class="text-right"><button type="button" class="btn btn-link" name="action" value="delete-books"> Xóa <span class="glyphicon glyphicon-trash"></span></button></th>
             </tr>
             <?php
         }
 
         public function tr_td($order, $row) {
             ?>
-            <tr>
+            <tr<?php if ((int) $row["outofbox"] == (int) $row["amount"]) echo ' class="danger"' ?>>
                 <td> <input type="checkbox" value="<?php echo $row["id"] ?>" class="checkbox-book" /> </td>
                 <td><?php echo $order ?></td>
+                <td><?php echo $row["code"] ?></td>
                 <td><?php echo $row["title"] ?></td>
+                <td><?php echo $row["amount"] ?></td>
+                <td><?php echo $row["amount"] - $row["outofbox"] ?></td>
                 <td class="text-right">
                     <div class="dropdown">
                         <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"> <span class="glyphicon glyphicon-cog"></span> <span class="caret"></span> </button>
@@ -40,11 +46,17 @@ if (isset($_POST["table"])) {
     }
 
     $table = (object) ($_POST["table"]);
-    $table->query = "
-	SELECT books.*, categories.name AS 'categoryname'
-	FROM books JOIN categories
-	ON books.categoryid = categories.id WHERE 1
-	";
+    $table->query = "SELECT books.*, IFNULL(a.outofbox, 0) AS 'outofbox' FROM books
+                    LEFT JOIN
+                    (
+                        SELECT issuedetails.bookid, COUNT(issuedetails.bookid) AS outofbox FROM issuedetails
+                        WHERE issuedetails.state
+                        GROUP BY issuedetails.bookid
+                    ) AS a
+                    ON books.id = a.bookid
+                    WHERE 1
+                    ";
+
     $table->params = array();
 
     if (isset($_POST["data"])) {

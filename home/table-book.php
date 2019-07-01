@@ -9,8 +9,9 @@ if (isset($_POST["table"])) {
             ?>
             <tr class="active">
                 <th> # </th>
+                <th> Mã sách </th>
                 <th> Tên sách </th>
-                <th> Số sách còn lại </th>
+                <th> Còn lại </th>
                 <th></th>
             </tr>
             <?php
@@ -20,7 +21,8 @@ if (isset($_POST["table"])) {
             ?>
             <tr class="text-left">
                 <td><strong> <?php echo $order ?> </strong></td>
-                <td> <?php printf("%s - (%s)", $row["title"], $row["categoryname"]) ?> </td>
+                <td> <?php echo $row["code"] ?> </td>
+                <td> <?php echo $row["title"] ?> </td>
                 <td> <?php echo $row["total"] ?> </td>
                 <td>
                     <button type="button" class="btn btn-link pull-right book-detail" value="<?php echo $row["id"] ?>"><span class="glyphicon glyphicon-ok-circle"></span> Chi tiết </button>
@@ -33,11 +35,20 @@ if (isset($_POST["table"])) {
 
     $table = (object) ($_POST["table"]);
     $table->query = "
-	SELECT books.*, categories.name AS 'categoryname', (books.amount - COUNT(issuedetails.id)) AS 'total' FROM books
-	LEFT JOIN categories ON categories.id = books.categoryid
-	LEFT JOIN issuedetails ON issuedetails.bookid = books.id AND issuedetails.state != 0
-	WHERE 1
-	";
+                    SELECT books.*, books.amount - IFNULL(a.outofbox IS NULL, 0) AS 'total' FROM books
+                    LEFT JOIN
+                    (
+                        SELECT issuedetails.bookid, COUNT(issuedetails.bookid) AS outofbox FROM issuedetails
+                        WHERE issuedetails.state
+                        GROUP BY issuedetails.bookid
+                    ) AS a
+                    ON books.id = a.bookid
+                    WHERE 1
+                    ";
+
+
+    $table->params = array();
+
     if (isset($_POST["data"])) {
         $keyword = $_POST["data"]["keyword"];
         $category = $_POST["data"]["category"];

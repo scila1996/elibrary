@@ -33,7 +33,7 @@ if (isset($_POST["table"])) {
     $table->query = "
 	SELECT books.*, categories.name AS 'categoryname' FROM books
 	JOIN categories ON books.categoryid = categories.id
-	LEFT JOIN issuedetails ON issuedetails.bookid = books.id AND issuedetails.state = 1
+	LEFT JOIN issuedetails ON issuedetails.bookid = books.id AND issuedetails.state
 	WHERE 1
 	";
     $table->params = array();
@@ -61,11 +61,13 @@ if (isset($_POST["table"])) {
 			(
 			books.categoryid REGEXP ?
 			)
-			GROUP BY books.id
-			HAVING COUNT(bookid) < books.amount
 		";
             $table->params = array_merge($table->params, array($category));
         }
+
+        $table->query .= "
+			GROUP BY books.id
+			HAVING COUNT(bookid) < books.amount";
     }
     $Load = new Load($table);
     exit("");

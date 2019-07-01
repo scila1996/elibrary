@@ -57,6 +57,7 @@ if (isset($_POST["table"])) {
 			SELECT CRC32(issues.id) AS 'code', issues.*, COUNT(issuedetails.bookid) AS 'quantity', COUNT(IF(issuedetails.state = 1, 1, NULL)) AS 'issuing' FROM issues
 			JOIN issuedetails ON issuedetails.issueid = issues.id
 			GROUP BY issues.id
+                        ORDER BY issues.dateissue DESC
 			) A
 		) B
 	WHERE 1
