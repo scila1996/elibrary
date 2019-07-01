@@ -1,11 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.1
--- http://www.phpmyadmin.net
+-- version 4.4.15.10
+-- https://www.phpmyadmin.net
 --
--- Host: 127.0.0.1
--- Generation Time: Oct 08, 2016 at 05:14 AM
--- Server version: 10.1.13-MariaDB
--- PHP Version: 5.6.23
+-- Host: localhost
+-- Generation Time: Jul 01, 2019 at 01:36 AM
+-- Server version: 5.5.60-MariaDB
+-- PHP Version: 7.2.19
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -13,10 +17,8 @@
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `elibrary`
+-- Database: `admin_elibrary`
 --
-CREATE DATABASE IF NOT EXISTS `elibrary` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `elibrary`;
 
 -- --------------------------------------------------------
 
@@ -24,7 +26,7 @@ USE `elibrary`;
 -- Table structure for table `admins`
 --
 
-CREATE TABLE `admins` (
+CREATE TABLE IF NOT EXISTS `admins` (
   `name` char(50) NOT NULL DEFAULT '',
   `user` char(30) NOT NULL DEFAULT 'Administrator',
   `pass` char(100) NOT NULL DEFAULT 'd033e22ae348aeb5660fc2140aec35850c4da997',
@@ -36,7 +38,7 @@ CREATE TABLE `admins` (
 --
 
 INSERT INTO `admins` (`name`, `user`, `pass`, `last`) VALUES
-('Nguyễn Trung', 'root', '9c7a31a8336cabd3298dbfef065214245e4a4176', '2016-10-08 10:08:33');
+('Librarian', 'admin', '9c7a31a8336cabd3298dbfef065214245e4a4176', '2019-07-01 08:36:34');
 
 -- --------------------------------------------------------
 
@@ -44,7 +46,7 @@ INSERT INTO `admins` (`name`, `user`, `pass`, `last`) VALUES
 -- Table structure for table `books`
 --
 
-CREATE TABLE `books` (
+CREATE TABLE IF NOT EXISTS `books` (
   `id` char(50) NOT NULL,
   `categoryid` char(50) NOT NULL,
   `dateadd` date NOT NULL,
@@ -472,7 +474,7 @@ INSERT INTO `books` (`id`, `categoryid`, `dateadd`, `title`, `code`, `author`, `
 -- Table structure for table `categories`
 --
 
-CREATE TABLE `categories` (
+CREATE TABLE IF NOT EXISTS `categories` (
   `id` char(50) NOT NULL,
   `name` char(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -483,6 +485,7 @@ CREATE TABLE `categories` (
 
 INSERT INTO `categories` (`id`, `name`) VALUES
 ('816be864bf1ff2e4d04b154cc43cd8c7', 'Sách Tham Khảo'),
+('a69a2069b0495741a267464022eeb9a7', 'datadasdas'),
 ('dc2703a295fff72609e7860371a6d203', 'Báo / Tạp chí');
 
 -- --------------------------------------------------------
@@ -491,7 +494,7 @@ INSERT INTO `categories` (`id`, `name`) VALUES
 -- Table structure for table `issuedetails`
 --
 
-CREATE TABLE `issuedetails` (
+CREATE TABLE IF NOT EXISTS `issuedetails` (
   `id` char(50) NOT NULL,
   `issueid` char(50) NOT NULL,
   `bookid` char(50) NOT NULL,
@@ -503,50 +506,42 @@ CREATE TABLE `issuedetails` (
 --
 
 INSERT INTO `issuedetails` (`id`, `issueid`, `bookid`, `state`) VALUES
-('00c18c2e5159805ed664f3fe6886e875', 'cc0ee173215af0da4b3af81a1c309be5', '00abaf773890947f477e529a039c7e54', 0),
-('00ee5aaf1328e993c5c39d1c85fc2da2', '1311c9418f71a74da1b1d7e8d5fc74d9', '012c9dfc8e9d3faf38d83ea8c6eb347b', 1),
 ('00fabe910cae5967e2bffa193833658b', 'a33d6ddafc0c4eb536b4644a673d55c0', '00abaf773890947f477e529a039c7e54', 0),
+('042307742200040df6beb50d8eb0ac9c', '8a7b9145e10009d21a6a10e4b7fd2e5b', '00abaf773890947f477e529a039c7e54', 1),
 ('04d7d7553a2f57a4f7d9425dc5465947', '4a54e4787690b9cff4bb7f10f59f5d6d', '095ca461d77f8ac7f8cdfb53860793f0', 0),
 ('0653ba084bf751f0b6fa502ecc4a0cbd', '0146c4ceb78a51db62a82614b1b94c4e', '004554a287a3d89d81bd3d836806d935', 0),
-('162ba20a2646a8f7d0effae89ca6631d', '1c08f4755455093d0615a825e80ffc96', '41f929978ad51081d486f9e3e9ae0f14', 0),
-('17bca903fc3a236c07cb2b0881d7149b', 'b39c5bd133aae0a111310b01fe1a8ea7', '012c9dfc8e9d3faf38d83ea8c6eb347b', 0),
 ('1aff6c92e8572b5acf0876d5841c48b5', 'ca96421045a7d0a95fb35ca9399fd1a5', '035384d869bb312eb68c7b15ebed79e3', 0),
 ('1b21eb7ff0b92f9c2388130e4ba269d1', '4a54e4787690b9cff4bb7f10f59f5d6d', '035384d869bb312eb68c7b15ebed79e3', 0),
 ('1d6622d8bb106a6d28cf90ef8478d2d5', '3aaf96a100f6efc26634821e391a9ec4', '083994abb440bed28d084b6c158f4c91', 0),
 ('1f6eed6907b0866e6635e67b892ac875', 'a33d6ddafc0c4eb536b4644a673d55c0', '035384d869bb312eb68c7b15ebed79e3', 0),
 ('26726b15e4a0c1a5da6fe46960a16467', '984c65b4df80627b44dc2b3d157072b4', '102e9b951374bf61c572df770af814ee', 0),
 ('26c37876c72283c54ed7ac787ba1964f', 'c0fbe60bf3e6222c82aec0740334ab20', '004554a287a3d89d81bd3d836806d935', 0),
-('2b9fdb1f827652de86c748995d40c099', '1311c9418f71a74da1b1d7e8d5fc74d9', '004554a287a3d89d81bd3d836806d935', 1),
 ('2efe58a4465444c7f4c5ebd8ded71684', '2239872fb2dfaccd6e418243eece90fb', '012c9dfc8e9d3faf38d83ea8c6eb347b', 0),
 ('2f25591437c4d72e3d3f258866f00087', '3aaf96a100f6efc26634821e391a9ec4', '012c9dfc8e9d3faf38d83ea8c6eb347b', 0),
-('323d7ba99010ca5c549d66b70d3672b9', '1c08f4755455093d0615a825e80ffc96', '3b99c19601eead04feaec05bccbabdc7', 0),
 ('36bc0e6b89b7b7073d3a3aeefc8e66b6', '3aaf96a100f6efc26634821e391a9ec4', '0324f984221e9c2f742042c6e9f73203', 0),
+('3b2cf7d6f82fcf922887ab3a9f95ef21', '8a7b9145e10009d21a6a10e4b7fd2e5b', '012c9dfc8e9d3faf38d83ea8c6eb347b', 1),
 ('41a2ea288e50bf74382f47b247ac8073', '984c65b4df80627b44dc2b3d157072b4', '00abaf773890947f477e529a039c7e54', 0),
 ('4479fc32541f41f33f2f1a8db65c026a', '4a54e4787690b9cff4bb7f10f59f5d6d', '0324f984221e9c2f742042c6e9f73203', 0),
 ('47e376aa2bb23f84bac25c7e0dca1036', 'c6d6561ff97b0138a756181ca2639260', '00abaf773890947f477e529a039c7e54', 0),
 ('4a23837dcdb5add53a8da012e135569b', '4a54e4787690b9cff4bb7f10f59f5d6d', '00abaf773890947f477e529a039c7e54', 0),
 ('4b859696cafd4fa331c3b60aa93043c1', '3aaf96a100f6efc26634821e391a9ec4', '03a901a5d946327accc2953f94a2a3a3', 0),
-('4f7650bf9729ac9391984302c342a197', '1c08f4755455093d0615a825e80ffc96', '767603647781808f90c12b7f0430515e', 0),
+('5128eebf2377dbf1f01de23379c0acac', 'e82d63b52553a0839c618892d151202a', '012c9dfc8e9d3faf38d83ea8c6eb347b', 1),
 ('53c065c2e9c7a23c441a539d9edc5f74', '3aaf96a100f6efc26634821e391a9ec4', '004554a287a3d89d81bd3d836806d935', 0),
-('54f8a24afaf80c8c32eef5a46ebf70ab', '294fdcaeb09b3f7cdbb6a4f31f75aad3', '00abaf773890947f477e529a039c7e54', 1),
+('54f8a24afaf80c8c32eef5a46ebf70ab', '294fdcaeb09b3f7cdbb6a4f31f75aad3', '00abaf773890947f477e529a039c7e54', 0),
 ('5722b82196cb31d3b2c1ab78d25a9d1a', 'd290951a90da9f94bed77eb5f0b85541', '004554a287a3d89d81bd3d836806d935', 0),
 ('5733c59901439c907ac056358f278e3f', '285686af79b91ab50cfd6e372ed2371c', '035384d869bb312eb68c7b15ebed79e3', 0),
 ('58d47ff3219aa301670094af915bfbd8', '984c65b4df80627b44dc2b3d157072b4', '03a901a5d946327accc2953f94a2a3a3', 0),
 ('596f1d2bbc6767e29c0c59093f58b025', 'c6d6561ff97b0138a756181ca2639260', '0324f984221e9c2f742042c6e9f73203', 0),
 ('5bfa60a7b6d8adac4d85dbc01d9f9dcb', 'ca96421045a7d0a95fb35ca9399fd1a5', '004554a287a3d89d81bd3d836806d935', 0),
 ('5c392441cadbccd991c63a1dd78256c1', 'a33d6ddafc0c4eb536b4644a673d55c0', '012c9dfc8e9d3faf38d83ea8c6eb347b', 0),
-('5ebbaac9b93fc406b776cc51d31ae5c5', '1311c9418f71a74da1b1d7e8d5fc74d9', '06d252592c48f5e523f9b1f5d3cf423b', 1),
 ('620d9c7e4a1e5a1b2b3c61e01b63fb38', 'bbd3b55cc793b2ccf1e8b8fcee831499', '012c9dfc8e9d3faf38d83ea8c6eb347b', 0),
 ('637e7ad64466a1ca10c059b80dd6b202', 'ca96421045a7d0a95fb35ca9399fd1a5', '012c9dfc8e9d3faf38d83ea8c6eb347b', 0),
 ('639d805f785f7f5891bc61397c36b964', '285686af79b91ab50cfd6e372ed2371c', '004554a287a3d89d81bd3d836806d935', 0),
 ('64db948c682b70b0a75e9affab4ad618', '984c65b4df80627b44dc2b3d157072b4', '0aeace1ecac2bd56fd23c8c8c9f51855', 0),
 ('663578715f6add44c34fd497a3b4f2eb', '2cf3dd4f096e5f1af4d9d5a4d9b05fb8', '004554a287a3d89d81bd3d836806d935', 0),
 ('6bc108010124c3f4c42fe45d29f2c09c', '4a54e4787690b9cff4bb7f10f59f5d6d', '0389068587387494d760b9212be5fcef', 0),
-('6c36eb3e5e112b9b1f83661466fa4ff8', '1c08f4755455093d0615a825e80ffc96', '404b998ac7a26d6a0463a594f79ee36f', 0),
-('6ddeb17c052f90d77d133a8e9994d30f', '84c99a1dba3a9284ac5e2bcf453bbf8f', '004554a287a3d89d81bd3d836806d935', 0),
 ('73389a0d8978217f9b679e385e2731a3', '35c31c619ecd431f270cfd23c6d5df08', '012c9dfc8e9d3faf38d83ea8c6eb347b', 0),
 ('746ee7db5fca9bccc0b3d65a6dc4273f', '2239872fb2dfaccd6e418243eece90fb', '00abaf773890947f477e529a039c7e54', 0),
-('752e594c00e2fc46c4444ad233933047', 'f479962b2e76564659d03d5fabf633ed', '012c9dfc8e9d3faf38d83ea8c6eb347b', 1),
 ('754066d1feb07ca155e972279ade634c', 'e9bef8e65ebe224347c3cee43b4ece80', '00abaf773890947f477e529a039c7e54', 0),
 ('80197d9f8cc79a078115aa29deb9d0ae', '285686af79b91ab50cfd6e372ed2371c', '0324f984221e9c2f742042c6e9f73203', 0),
 ('806ab5ecfb2b8eddbb167bbd6160e058', 'a33d6ddafc0c4eb536b4644a673d55c0', '004554a287a3d89d81bd3d836806d935', 0),
@@ -554,40 +549,31 @@ INSERT INTO `issuedetails` (`id`, `issueid`, `bookid`, `state`) VALUES
 ('8c268a13c997425cf06dc7454872810f', '984c65b4df80627b44dc2b3d157072b4', '095ca461d77f8ac7f8cdfb53860793f0', 0),
 ('906fed35cbe34d65892777e0a33bf453', '00ea561dbb90b06e35e690dfa5226ae5', '0324f984221e9c2f742042c6e9f73203', 0),
 ('9078a98aaff06f1e081e0f83260904d2', '984c65b4df80627b44dc2b3d157072b4', '0389068587387494d760b9212be5fcef', 0),
-('91136bfec93c8461d0aec76f8f3afda6', '1c08f4755455093d0615a825e80ffc96', '7d12239662e64acd58e1a618be1277eb', 0),
 ('98653024873533be699fb16d4f0a6d86', '35c31c619ecd431f270cfd23c6d5df08', '004554a287a3d89d81bd3d836806d935', 0),
 ('98734cfc85a8a7b43a33834e63b69997', '35c31c619ecd431f270cfd23c6d5df08', '00abaf773890947f477e529a039c7e54', 0),
 ('99bb6d4b1d54b23b8e48a8a3ee270550', 'f5335bba95aa9bde2d46477b202d05ab', '004554a287a3d89d81bd3d836806d935', 0),
 ('a0362db8c7eeaea0968f2587e0ead726', 'ca96421045a7d0a95fb35ca9399fd1a5', '0389068587387494d760b9212be5fcef', 0),
 ('a0ba739b2d55c9786ba92f7013f9d6cb', '2239872fb2dfaccd6e418243eece90fb', '0324f984221e9c2f742042c6e9f73203', 0),
 ('a1628d9f9cd7444fd9e818dc6c25d1c5', 'bbd3b55cc793b2ccf1e8b8fcee831499', '004554a287a3d89d81bd3d836806d935', 0),
-('a1d679e57edeef74bd832c8aea11f04f', 'cc0ee173215af0da4b3af81a1c309be5', '004554a287a3d89d81bd3d836806d935', 0),
 ('a7309e1c9821d65171a99421d6acc742', '285686af79b91ab50cfd6e372ed2371c', '06d252592c48f5e523f9b1f5d3cf423b', 0),
 ('a89811f999005e7cef7f75fb4fe9745c', '5659aeb722e1951f356b855c93d6fb34', '00abaf773890947f477e529a039c7e54', 0),
 ('abe0978ee46a47d75b679531833492a1', '4a54e4787690b9cff4bb7f10f59f5d6d', '083994abb440bed28d084b6c158f4c91', 0),
 ('ac35697e5aca3eb453cc594c54db0014', '984c65b4df80627b44dc2b3d157072b4', '035384d869bb312eb68c7b15ebed79e3', 0),
-('aca468ac3f4ea76249416a70e73ed917', '294fdcaeb09b3f7cdbb6a4f31f75aad3', '004554a287a3d89d81bd3d836806d935', 1),
+('aca468ac3f4ea76249416a70e73ed917', '294fdcaeb09b3f7cdbb6a4f31f75aad3', '004554a287a3d89d81bd3d836806d935', 0),
 ('aef2286e7ff00fcf144845fa6ab6dc22', '0fd78cc61ee7aeeca2c6825015a1918c', '00abaf773890947f477e529a039c7e54', 0),
 ('b0a387ec6316445e2f17cf05ec4d2db1', 'a33d6ddafc0c4eb536b4644a673d55c0', '0324f984221e9c2f742042c6e9f73203', 0),
 ('b194971c9408f3601702bade21f1ed47', '3aaf96a100f6efc26634821e391a9ec4', '035384d869bb312eb68c7b15ebed79e3', 0),
-('b4c9190c540d4a0d9e35f9ec55a2942a', '1c08f4755455093d0615a825e80ffc96', '56feff7f498d9e8c2f495adc3744fb82', 0),
 ('ba1d0e0c3040ad2007795fb79661b2de', 'c6d6561ff97b0138a756181ca2639260', '004554a287a3d89d81bd3d836806d935', 0),
 ('bc16500514e51faf61c74c6a8b6e86d0', 'c6d6561ff97b0138a756181ca2639260', '0389068587387494d760b9212be5fcef', 0),
 ('bc23e081206409cb909516e16079f056', '00ea561dbb90b06e35e690dfa5226ae5', '012c9dfc8e9d3faf38d83ea8c6eb347b', 0),
-('bd8f6302d2a5ee18a7aab6282164862e', 'cc0ee173215af0da4b3af81a1c309be5', '012c9dfc8e9d3faf38d83ea8c6eb347b', 0),
-('be19ac43a24edd5fb1dbb599f0f31e6d', 'b39c5bd133aae0a111310b01fe1a8ea7', '0324f984221e9c2f742042c6e9f73203', 0),
 ('c0b12a046da258a3fbee60cba92f2799', 'bbd3b55cc793b2ccf1e8b8fcee831499', '00abaf773890947f477e529a039c7e54', 0),
 ('c1487846c6721daef79e8b34b41dce9f', '984c65b4df80627b44dc2b3d157072b4', '0a8d5ff1965c64f3eb43e70b64fd7a2c', 0),
 ('ca9f2d332ce23bbb73270087b8b4edd1', '3aaf96a100f6efc26634821e391a9ec4', '06d252592c48f5e523f9b1f5d3cf423b', 0),
-('cb596e1c75af08151d233086664eb2e1', 'f479962b2e76564659d03d5fabf633ed', '004554a287a3d89d81bd3d836806d935', 1),
 ('d2bf7c447f4172ef3b67dec16ed4b7c8', 'c6d6561ff97b0138a756181ca2639260', '06d252592c48f5e523f9b1f5d3cf423b', 0),
-('d74eb2d1283f7270b216352884c4b2d4', '2f7fbbcae42d094c6b704a1a53af656f', '0324f984221e9c2f742042c6e9f73203', 0),
+('dbf8ad9fa6172484ad03bc947b5c469d', '8b1016d6c8497341b65140542e524a4c', '012c9dfc8e9d3faf38d83ea8c6eb347b', 1),
 ('dec7bfdaee23632ba097012371f720e2', '5659aeb722e1951f356b855c93d6fb34', '004554a287a3d89d81bd3d836806d935', 0),
 ('df88975f2ce4e0720ecb6a24df3b074b', '2239872fb2dfaccd6e418243eece90fb', '004554a287a3d89d81bd3d836806d935', 0),
 ('e02b16c8a26585ed911e66bb1c2db1b6', '4a54e4787690b9cff4bb7f10f59f5d6d', '03a901a5d946327accc2953f94a2a3a3', 0),
-('e0648a893a562e3af9ec548878f01524', 'f479962b2e76564659d03d5fabf633ed', '00abaf773890947f477e529a039c7e54', 1),
-('e088191ea5e09fd08d075c8c061d878d', 'b39c5bd133aae0a111310b01fe1a8ea7', '035384d869bb312eb68c7b15ebed79e3', 0),
-('e17fa8bcb6e6e95e0a9e2749db630355', '2f7fbbcae42d094c6b704a1a53af656f', '012c9dfc8e9d3faf38d83ea8c6eb347b', 0),
 ('e71be8ed73b4b6089556b3bff313ad23', 'd290951a90da9f94bed77eb5f0b85541', '00abaf773890947f477e529a039c7e54', 0),
 ('e790bf7528afd48786a6c188c9229ef3', 'a33d6ddafc0c4eb536b4644a673d55c0', '0389068587387494d760b9212be5fcef', 0),
 ('e7c5e54f04aef66b0a88777f0c77f17e', '285686af79b91ab50cfd6e372ed2371c', '00abaf773890947f477e529a039c7e54', 0),
@@ -595,7 +581,6 @@ INSERT INTO `issuedetails` (`id`, `issueid`, `bookid`, `state`) VALUES
 ('e8ccb98f3de8f8bb4c011e5dfeb30a3c', '984c65b4df80627b44dc2b3d157072b4', '06d252592c48f5e523f9b1f5d3cf423b', 0),
 ('ec93c18a800e68246b72321246bf6e8e', '4a54e4787690b9cff4bb7f10f59f5d6d', '012c9dfc8e9d3faf38d83ea8c6eb347b', 0),
 ('ed8d64c4935ea9cc441b8f7c36549e78', 'e9bef8e65ebe224347c3cee43b4ece80', '004554a287a3d89d81bd3d836806d935', 0),
-('f0a459997bbf151fc8170b3f19a0b939', '1311c9418f71a74da1b1d7e8d5fc74d9', '0389068587387494d760b9212be5fcef', 1),
 ('f6730f7b9c9911dd61dfad3cc1c483ce', 'e98704341400e8dd4ca92bfe65274995', '0389068587387494d760b9212be5fcef', 0),
 ('f75d1869c2f3002f81fa593f3465900c', '3aaf96a100f6efc26634821e391a9ec4', '0389068587387494d760b9212be5fcef', 0),
 ('fa3dcf3bfda7ef9998d0744f8dd4d9f6', '4a54e4787690b9cff4bb7f10f59f5d6d', '06d252592c48f5e523f9b1f5d3cf423b', 0);
@@ -606,7 +591,7 @@ INSERT INTO `issuedetails` (`id`, `issueid`, `bookid`, `state`) VALUES
 -- Table structure for table `issues`
 --
 
-CREATE TABLE `issues` (
+CREATE TABLE IF NOT EXISTS `issues` (
   `id` char(50) NOT NULL,
   `user` char(30) NOT NULL,
   `dateissue` datetime NOT NULL,
@@ -621,30 +606,26 @@ INSERT INTO `issues` (`id`, `user`, `dateissue`, `datesubmit`) VALUES
 ('00ea561dbb90b06e35e690dfa5226ae5', 'scila1996', '2016-06-19 22:56:07', '2016-12-19'),
 ('0146c4ceb78a51db62a82614b1b94c4e', 'scila1996', '2016-06-19 23:04:58', '2016-12-19'),
 ('0fd78cc61ee7aeeca2c6825015a1918c', 'scila1996', '2016-06-21 03:40:00', '2016-12-21'),
-('1311c9418f71a74da1b1d7e8d5fc74d9', 'tk123', '2016-06-28 15:52:00', '2016-12-28'),
-('1c08f4755455093d0615a825e80ffc96', '734148', '2016-06-16 02:53:02', '2016-12-16'),
 ('2239872fb2dfaccd6e418243eece90fb', 'scila1996', '2016-06-20 12:44:17', '2016-12-20'),
 ('285686af79b91ab50cfd6e372ed2371c', 'scila1996', '2016-06-20 12:42:32', '2016-12-20'),
 ('294fdcaeb09b3f7cdbb6a4f31f75aad3', 'scila1996', '2016-06-22 03:26:00', '2016-12-22'),
 ('2cf3dd4f096e5f1af4d9d5a4d9b05fb8', 'scila1996', '2016-06-19 23:06:30', '2016-12-19'),
-('2f7fbbcae42d094c6b704a1a53af656f', '734148', '2016-06-22 03:23:06', '2016-12-22'),
 ('35c31c619ecd431f270cfd23c6d5df08', 'scila1996', '2016-06-22 03:27:03', '2016-12-22'),
 ('3aaf96a100f6efc26634821e391a9ec4', 'scila1996', '2016-06-16 02:44:21', '2016-12-16'),
 ('4a54e4787690b9cff4bb7f10f59f5d6d', 'scila1996', '2016-06-16 17:07:02', '2016-12-16'),
 ('5659aeb722e1951f356b855c93d6fb34', 'scila1996', '2016-06-19 23:08:50', '2016-12-19'),
-('84c99a1dba3a9284ac5e2bcf453bbf8f', 'tk123', '2016-06-28 16:51:22', '2016-12-28'),
+('8a7b9145e10009d21a6a10e4b7fd2e5b', 'scila1996', '2019-07-01 06:15:16', '2020-01-01'),
+('8b1016d6c8497341b65140542e524a4c', 'scila1996', '2019-07-01 07:50:00', '2020-01-01'),
 ('984c65b4df80627b44dc2b3d157072b4', 'scila1996', '2016-06-21 02:13:40', '2016-12-21'),
 ('a33d6ddafc0c4eb536b4644a673d55c0', 'scila1996', '2016-06-20 12:15:57', '2016-12-20'),
-('b39c5bd133aae0a111310b01fe1a8ea7', '734148', '2016-06-21 14:41:00', '2016-12-21'),
 ('bbd3b55cc793b2ccf1e8b8fcee831499', 'scila1996', '2016-06-20 12:33:22', '2016-12-20'),
 ('c0fbe60bf3e6222c82aec0740334ab20', 'scila1996', '2016-06-19 23:04:27', '2016-12-19'),
 ('c6d6561ff97b0138a756181ca2639260', 'scila1996', '2016-06-20 00:00:58', '2016-12-20'),
 ('ca96421045a7d0a95fb35ca9399fd1a5', 'scila1996', '2016-06-20 00:00:04', '2016-12-20'),
-('cc0ee173215af0da4b3af81a1c309be5', '734148', '2016-06-21 03:20:16', '2016-12-21'),
 ('d290951a90da9f94bed77eb5f0b85541', 'scila1996', '2016-06-19 00:50:48', '2016-12-19'),
+('e82d63b52553a0839c618892d151202a', 'scila1996', '2019-07-01 07:50:20', '2020-01-01'),
 ('e98704341400e8dd4ca92bfe65274995', 'scila1996', '2016-06-16 17:07:43', '2016-12-16'),
 ('e9bef8e65ebe224347c3cee43b4ece80', 'scila1996', '2016-06-16 19:56:18', '2016-12-16'),
-('f479962b2e76564659d03d5fabf633ed', '734148', '2016-05-22 03:26:28', '2016-06-01'),
 ('f5335bba95aa9bde2d46477b202d05ab', 'scila1996', '2016-06-19 23:07:38', '2016-12-19');
 
 -- --------------------------------------------------------
@@ -653,7 +634,7 @@ INSERT INTO `issues` (`id`, `user`, `dateissue`, `datesubmit`) VALUES
 -- Table structure for table `issue_rule`
 --
 
-CREATE TABLE `issue_rule` (
+CREATE TABLE IF NOT EXISTS `issue_rule` (
   `month` int(11) NOT NULL,
   `total` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -668,10 +649,30 @@ INSERT INTO `issue_rule` (`month`, `total`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `state`
+--
+
+CREATE TABLE IF NOT EXISTS `state` (
+  `flag` tinyint(11) NOT NULL,
+  `description` char(64) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `state`
+--
+
+INSERT INTO `state` (`flag`, `description`) VALUES
+(-1, 'Bị mất'),
+(0, 'Đã trả'),
+(1, 'Đang mượn');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
-CREATE TABLE `users` (
+CREATE TABLE IF NOT EXISTS `users` (
   `user` char(30) NOT NULL,
   `pass` char(100) NOT NULL DEFAULT 'SHA1(1234561)',
   `name` char(50) NOT NULL
@@ -682,9 +683,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user`, `pass`, `name`) VALUES
-('734148', '7c4a8d09ca3762af61e59520943dc26494f8941b', 'Ng Trung'),
-('scila1996', '7c4a8d09ca3762af61e59520943dc26494f8941b', 'Nguyen Trung'),
-('tk123', '7c4a8d09ca3762af61e59520943dc26494f8941b', 'Doc gia x');
+('scila1996', '9c7a31a8336cabd3298dbfef065214245e4a4176', 'Nguyen Trung');
 
 --
 -- Indexes for dumped tables
@@ -718,7 +717,8 @@ ALTER TABLE `categories`
 ALTER TABLE `issuedetails`
   ADD PRIMARY KEY (`id`),
   ADD KEY `issueid` (`issueid`),
-  ADD KEY `bookid` (`bookid`);
+  ADD KEY `bookid` (`bookid`),
+  ADD KEY `state` (`state`);
 
 --
 -- Indexes for table `issues`
@@ -727,6 +727,13 @@ ALTER TABLE `issues`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `id` (`id`),
   ADD KEY `user` (`user`);
+
+--
+-- Indexes for table `state`
+--
+ALTER TABLE `state`
+  ADD PRIMARY KEY (`flag`),
+  ADD UNIQUE KEY `flag` (`flag`);
 
 --
 -- Indexes for table `users`
@@ -749,6 +756,7 @@ ALTER TABLE `books`
 -- Constraints for table `issuedetails`
 --
 ALTER TABLE `issuedetails`
+  ADD CONSTRAINT `issuedetails_ibfk_3` FOREIGN KEY (`state`) REFERENCES `state` (`flag`),
   ADD CONSTRAINT `issuedetails_ibfk_1` FOREIGN KEY (`issueid`) REFERENCES `issues` (`id`),
   ADD CONSTRAINT `issuedetails_ibfk_2` FOREIGN KEY (`bookid`) REFERENCES `books` (`id`);
 
